@@ -78,6 +78,8 @@ We keep a clean file structure by features. Core functions are in the `Core` fol
 
 Feel free to open a new issue or pull request. Conventional commits are encouraged.
 
+Read the [CONTRIBUTING.md](CONTRIBUTING.md) file for more information.
+
 If you are interesting in beta testing, you may take a look of the [TestFlight beta](https://testflight.apple.com/join/lAWvlIUB).
 
-For extracting frequency data from sound samples, read [SCRIPTS.md](scripts.md).
+For extracting frequency data from sound samples, read [SCRIPTS.md](SCRIPTS.md).
