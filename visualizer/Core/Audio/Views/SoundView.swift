@@ -15,6 +15,7 @@ struct SoundView: View {
 
     @State private var showSheet: Bool = false
     @State private var showTutorial: Bool = false
+    @State private var showDisplayDrawer: Bool = false
     
     var body: some View {
         ZStack {
@@ -41,10 +42,15 @@ struct SoundView: View {
                         .environmentObject(vm.settingVM)
                 })
                 
+                
                 VStack(alignment: .trailing) {
-                    Spacer()
-                    VPitchIndicator(pitchLetter: $vm.audio.pitchNotation, position: vm.getPitchIndicatorPosition())
-                    Spacer()
+                    
+                    if (!showDisplayDrawer){
+                        Spacer()
+                        VPitchIndicator(pitchLetter: $vm.audio.pitchNotation, position: vm.getPitchIndicatorPosition())
+                        Spacer()
+                    }
+                    
                 }
                 .padding(.top, 42)
                 .padding(.trailing, 12)
@@ -55,14 +61,19 @@ struct SoundView: View {
                         .padding(15)
                     
                     Spacer()
+                    HStack(alignment: .top){
+                        DisplayDrawerButton(action:{showDisplayDrawer.toggle()})
+                        LiveDropdown(isWatchLive: $watchConnectVM.isLive,
+                                     start: vm.start,
+                                     stop: vm.stop,
+                                     options: [1,3,5],
+                                     sendIsLive: watchConnectVM.sendIsLive
+                        )
+                    }.padding(15)
+                        
+                        
                     
-                    LiveDropdown(isWatchLive: $watchConnectVM.isLive,
-                                 start: vm.start,
-                                 stop: vm.stop,
-                                 options: [1,3,5],
-                                 sendIsLive: watchConnectVM.sendIsLive
-                    )
-                        .padding(15)
+                        
                 }
                 .frame(maxWidth: .infinity, alignment: .trailing)
             }
@@ -81,6 +92,14 @@ struct SoundView: View {
                     firstLaunch = false
                     return
                 }
+            
+            }
+            // show the DisplayDrawerView on DisplayDrawerButton (the one with layers icon) click
+            ZStack {
+                DisplayDrawerView(isShowing: $showDisplayDrawer,
+                                 isShowingModel: $showDisplayDrawer
+                ).environmentObject(vm.DisplayDrawerVM)
+                
             }
         }
         

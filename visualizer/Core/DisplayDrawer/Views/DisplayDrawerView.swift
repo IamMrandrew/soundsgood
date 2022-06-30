@@ -1,0 +1,69 @@
+//
+//  DIsplayDrawerViewModel.swift
+//  visualizer
+//
+//  Created by John Yeung on 29/6/2022.
+//
+
+import SwiftUI
+
+struct DisplayDrawerView: View {
+    //@EnvironmentObject var vm: DisplayDrawerViewModel
+    @Binding var isShowing: Bool
+    @Binding var isShowingModel: Bool
+    
+    func choose() -> Void {
+        // vm.MusicalNotes.selected = instrument
+    }
+    
+    var body: some View {
+        DrawerView(isShowing: $isShowing, isShowingModal: $isShowingModel) {
+            VStack(alignment: .leading) {
+                Text(//selectedFeature.rawValue)
+                    "Display")
+                    .font(.heading.small)
+                    // Weird alignment behaviour, Workaround only
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                
+                Spacer()
+                    .frame(height: 16)
+                
+                HStack(){
+                    Spacer()
+                    VStack(){
+                        DisplayDrawerItemButton(action: choose, type: "Musical notes", selected: true)
+                            .previewLayout(.fixed(width: 64, height: 64))
+                    }
+                    Spacer()
+                    VStack(){
+                        DisplayDrawerItemButton(action: choose, type: "Dynamic", selected: false)
+                            .previewLayout(.fixed(width: 64, height: 64))
+                    }
+                    Spacer()
+                    VStack(){
+                        DisplayDrawerItemButton(action: choose, type: "xxx", selected: false)
+                            .previewLayout(.fixed(width: 64, height: 64))
+                    }
+                    Spacer()
+                }
+                Spacer()
+                    .frame(height: 32)
+                
+                
+            }
+            .padding(EdgeInsets(top: 40, leading: 32, bottom: 40, trailing: 32))
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+            // For dragging gesture
+            .background(Color.neutral.background.opacity(0.00001))
+        }
+    }
+}
+
+struct MusicalNotesIndicatorDrawer_Previews: PreviewProvider {
+    static var previews: some View {
+        DisplayDrawerView(isShowing: .constant(true),
+                                isShowingModel: .constant(true)
+        )
+        .environmentObject(DisplayDrawerViewModel())
+    }
+}

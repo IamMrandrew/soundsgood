@@ -32,6 +32,8 @@ class AudioViewModel: ObservableObject {
     
     @Published var timbreDrawerVM = TimbreDrawerViewModel()
     
+    @Published var DisplayDrawerVM = DisplayDrawerViewModel() // added 30/06/2022 John Yeung
+    
     @Published var isStarted: Bool = false
     
     // AudioKit
