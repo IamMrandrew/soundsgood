@@ -10,14 +10,14 @@ import SwiftUI
 struct DisplayDrawerView: View {
     //@EnvironmentObject var vm: DisplayDrawerViewModel
     @Binding var isShowing: Bool
-    @Binding var isShowingModel: Bool
+    @Binding var isShowingModal: Bool
     
     func choose() -> Void {
         // vm.MusicalNotes.selected = instrument
     }
     
     var body: some View {
-        DrawerView(isShowing: $isShowing, isShowingModal: $isShowingModel) {
+        DrawerView(isShowing: $isShowing, isShowingModal: $isShowingModal) {
             VStack(alignment: .leading) {
                 Text(//selectedFeature.rawValue)
                     "Display")
@@ -28,24 +28,26 @@ struct DisplayDrawerView: View {
                 Spacer()
                     .frame(height: 16)
                 
-                HStack(){
-                    Spacer()
-                    VStack(){
-                        DisplayDrawerItemButton(action: choose, type: "Musical notes", selected: true)
-                            .previewLayout(.fixed(width: 64, height: 64))
+                VStack(alignment: .leading) {
+                    HStack(){
+                        VStack(){
+                            DisplayDrawerItemButton(action: choose, type: "Musical notes", selected: true)
+                                .previewLayout(.fixed(width: 64, height: 64))
+                        }
+                        Spacer()
+                        VStack(){
+                            DisplayDrawerItemButton(action: choose, type: "Dynamic", selected: false)
+                                .previewLayout(.fixed(width: 64, height: 64))
+                        }
+                        Spacer()
+                        VStack(){
+                            DisplayDrawerItemButton(action: choose, type: "xxx", selected: false)
+                                .previewLayout(.fixed(width: 64, height: 64))
+                        }
                     }
-                    Spacer()
-                    VStack(){
-                        DisplayDrawerItemButton(action: choose, type: "Dynamic", selected: false)
-                            .previewLayout(.fixed(width: 64, height: 64))
-                    }
-                    Spacer()
-                    VStack(){
-                        DisplayDrawerItemButton(action: choose, type: "xxx", selected: false)
-                            .previewLayout(.fixed(width: 64, height: 64))
-                    }
-                    Spacer()
                 }
+                .padding()
+                
                 Spacer()
                     .frame(height: 32)
                 
@@ -62,7 +64,7 @@ struct DisplayDrawerView: View {
 struct MusicalNotesIndicatorDrawer_Previews: PreviewProvider {
     static var previews: some View {
         DisplayDrawerView(isShowing: .constant(true),
-                                isShowingModel: .constant(true)
+                                isShowingModal: .constant(true)
         )
         .environmentObject(DisplayDrawerViewModel())
     }
