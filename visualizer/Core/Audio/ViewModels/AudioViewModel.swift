@@ -25,6 +25,7 @@ class AudioViewModel: ObservableObject {
     @Published var settings: Setting = Setting.default
     
     @Published var timbreDrawer: TimbreDrawer = TimbreDrawer.default
+    @Published var displayDrawer: DisplayDrawer = DisplayDrawer.default
     
     // Child ViewModels
     private var cancellables = Set<AnyCancellable>()

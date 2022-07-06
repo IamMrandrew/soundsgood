@@ -9,14 +9,14 @@ import SwiftUI
 
 struct DisplayDrawerItemButton: View {
     // future add alass MusicalNotesDrawer.MusicalNotesTypes
-    let action: ()->Void
-    let type: String
+    let action: (DisplayDrawer.DisplayTypes)->Void
+    let type: DisplayDrawer.DisplayTypes
     var selected: Bool
     
     var body: some View {
         VStack {
             Button {
-                self.action()
+                self.action(type)
             } label: {
                 // to be replaced with a image file in the future
                 Image(uiImage: UIImage())
@@ -39,7 +39,7 @@ struct DisplayDrawerItemButton: View {
                         .stroke(Color.foundation.primary, lineWidth: 3)
                 )
             }
-            Text(type)
+            Text(type.label)
                 .font(.label.small)
                 .lineLimit(nil)
                 .fixedSize(horizontal: true, vertical: false)
@@ -49,16 +49,16 @@ struct DisplayDrawerItemButton: View {
 }
 
 struct DisplayDrawerItemButton_Previews: PreviewProvider {
-    static func test() -> Void {
+    static func test(type: DisplayDrawer.DisplayTypes) -> Void {
         print("Musical Notes Button Clicked")
     }
     
     static var previews: some View {
-        DisplayDrawerItemButton(action: self.test, type: "Musical notes", selected: true)
+        DisplayDrawerItemButton(action: self.test, type: DisplayDrawer.DisplayTypes.musicalNotes, selected: true)
             .previewLayout(.fixed(width: 80, height: 80))
-        DisplayDrawerItemButton(action: self.test, type: "Dynamic", selected: false)
+        DisplayDrawerItemButton(action: self.test, type: DisplayDrawer.DisplayTypes.dynamic, selected: false)
             .previewLayout(.fixed(width: 80, height: 80))
-        DisplayDrawerItemButton(action: self.test, type: "xxx", selected: false)
+        DisplayDrawerItemButton(action: self.test, type: DisplayDrawer.DisplayTypes.xxx, selected: false)
             .previewLayout(.fixed(width: 80, height: 80))
     }
 }

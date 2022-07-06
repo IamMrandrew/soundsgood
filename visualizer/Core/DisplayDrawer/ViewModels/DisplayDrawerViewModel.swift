@@ -8,4 +8,13 @@
 import Foundation
 
 class DisplayDrawerViewModel: ObservableObject {
+    @Published var displayDrawer: DisplayDrawer
+    
+    init() {
+        self.displayDrawer = DisplayDrawer.default
+    }
+    
+    func isSelected(_ type: DisplayDrawer.DisplayTypes) -> Bool {
+        return type == self.displayDrawer.selected
+    }
 }

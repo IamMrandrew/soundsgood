@@ -82,6 +82,7 @@
 		8EEFAF9127130F8000E3651D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EEFAF9027130F8000E3651D /* Assets.xcassets */; };
 		8EEFAF9427130F8000E3651D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EEFAF9327130F8000E3651D /* Preview Assets.xcassets */; };
 		B0624A6A286C3C80005849F0 /* DisplayDrawerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0624A69286C3C80005849F0 /* DisplayDrawerButton.swift */; };
+		B0C5D29F2875264C00CDC7CC /* DisplayDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C5D29E2875264C00CDC7CC /* DisplayDrawer.swift */; };
 		B0D97864286D4249003880F2 /* DisplayDrawerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D97863286D4249003880F2 /* DisplayDrawerViewModel.swift */; };
 		B0D97866286D4290003880F2 /* DisplayDrawerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D97865286D4290003880F2 /* DisplayDrawerView.swift */; };
 		B0D97868286D473B003880F2 /* DisplayDrawerItemButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D97867286D473B003880F2 /* DisplayDrawerItemButton.swift */; };
@@ -236,6 +237,7 @@
 		8EEFAF9327130F8000E3651D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8EEFAFA12713146200E3651D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B0624A69286C3C80005849F0 /* DisplayDrawerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayDrawerButton.swift; sourceTree = "<group>"; };
+		B0C5D29E2875264C00CDC7CC /* DisplayDrawer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayDrawer.swift; sourceTree = "<group>"; };
 		B0D97863286D4249003880F2 /* DisplayDrawerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayDrawerViewModel.swift; sourceTree = "<group>"; };
 		B0D97865286D4290003880F2 /* DisplayDrawerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayDrawerView.swift; sourceTree = "<group>"; };
 		B0D97867286D473B003880F2 /* DisplayDrawerItemButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayDrawerItemButton.swift; sourceTree = "<group>"; };
@@ -380,6 +382,7 @@
 				49F9A501279BDF6600AC4A4A /* InteractiveTutorial.swift */,
 				491041D027ADB32100196A2D /* Audio.swift */,
 				8E09213727BB803A00F540B6 /* TimbreDrawer.swift */,
+				B0C5D29E2875264C00CDC7CC /* DisplayDrawer.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1002,6 +1005,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E09212527BA994900F540B6 /* InstrumentButton.swift in Sources */,
+				B0C5D29F2875264C00CDC7CC /* DisplayDrawer.swift in Sources */,
 				B0D97866286D4290003880F2 /* DisplayDrawerView.swift in Sources */,
 				49EFBED027E9E99F000925E5 /* ReferenceBar.swift in Sources */,
 				4903949727EA2B55000B3AC0 /* TimbreTag.swift in Sources */,

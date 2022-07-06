@@ -10,12 +10,17 @@ import SwiftUI
 struct SoundView: View {
     @EnvironmentObject var vm: AudioViewModel
     @EnvironmentObject var watchConnectVM: WatchConnectivityViewModel
+    
+    // can be accessed through vm.displayDrawer?
+    // @EnvironmentObject var displayDrawerVM: DisplayDrawerViewModel
+    //@Published var displayDrawer: DisplayDrawer
 
     @AppStorage(InteractiveTutorial.Page.pitch.rawValue) var firstLaunch: Bool?
 
     @State private var showSheet: Bool = false
     @State private var showTutorial: Bool = false
     @State private var showDisplayDrawer: Bool = false
+    @Binding var isShowingModal: Bool
     
     var body: some View {
         ZStack {
@@ -45,12 +50,11 @@ struct SoundView: View {
                 
                 VStack(alignment: .trailing) {
                     
-                    if (!showDisplayDrawer){
+                    if(vm.DisplayDrawerVM.isSelected( DisplayDrawer.DisplayTypes.musicalNotes)){
                         Spacer()
                         VPitchIndicator(pitchLetter: $vm.audio.pitchNotation, position: vm.getPitchIndicatorPosition())
                         Spacer()
                     }
-                    
                 }
                 .padding(.top, 42)
                 .padding(.trailing, 12)
@@ -62,14 +66,18 @@ struct SoundView: View {
                     
                     Spacer()
                     HStack(alignment: .top){
-                        DisplayDrawerButton(action:{showDisplayDrawer.toggle()})
+                        DisplayDrawerButton(action:{
+                            showDisplayDrawer.toggle()
+                            isShowingModal.toggle()
+                        })
+                            .padding(EdgeInsets(top: 15, leading: 0, bottom: 0, trailing: 0))
                         LiveDropdown(isWatchLive: $watchConnectVM.isLive,
                                      start: vm.start,
                                      stop: vm.stop,
                                      options: [1,3,5],
                                      sendIsLive: watchConnectVM.sendIsLive
-                        )
-                    }.padding(15)
+                        ).padding(15)
+                    }
                         
                         
                     
@@ -97,7 +105,7 @@ struct SoundView: View {
             // show the DisplayDrawerView on DisplayDrawerButton (the one with layers icon) click
             ZStack {
                 DisplayDrawerView(isShowing: $showDisplayDrawer,
-                                 isShowingModel: $showDisplayDrawer
+                                 isShowingModal: $isShowingModal
                 ).environmentObject(vm.DisplayDrawerVM)
                 
             }
@@ -107,9 +115,12 @@ struct SoundView: View {
 }
 
 struct SoundView_Previews: PreviewProvider {
+    @State static var isShowingModal: Bool = false
     static var previews: some View {
-        SoundView()
-            .environmentObject(AudioViewModel())
+        Group {
+            SoundView(isShowingModal: $isShowingModal)
+                .environmentObject(AudioViewModel())
             .environmentObject(WatchConnectivityViewModel())
+        }
     }
 }
