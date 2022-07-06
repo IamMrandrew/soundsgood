@@ -112,7 +112,7 @@ struct ContentView: View {
     func views(_ destination: Tab) -> some View {
         switch destination {
         case .sound:
-            SoundView()
+            SoundView(isShowingModal: $isShowingModal)
                 .environmentObject(audioViewModel)
                 .environmentObject(watchConnectivityViewModel)
         case .pitch:
