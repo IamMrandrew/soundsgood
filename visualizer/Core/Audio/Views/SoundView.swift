@@ -10,10 +10,7 @@ import SwiftUI
 struct SoundView: View {
     @EnvironmentObject var vm: AudioViewModel
     @EnvironmentObject var watchConnectVM: WatchConnectivityViewModel
-    
-    // can be accessed through vm.displayDrawer?
-    // @EnvironmentObject var displayDrawerVM: DisplayDrawerViewModel
-    //@Published var displayDrawer: DisplayDrawer
+
 
     @AppStorage(InteractiveTutorial.Page.pitch.rawValue) var firstLaunch: Bool?
 
@@ -65,6 +62,7 @@ struct SoundView: View {
                         .padding(15)
                     
                     Spacer()
+                    
                     HStack(alignment: .top){
                         DisplayDrawerButton(action:{
                             showDisplayDrawer.toggle()
@@ -78,10 +76,6 @@ struct SoundView: View {
                                      sendIsLive: watchConnectVM.sendIsLive
                         ).padding(15)
                     }
-                        
-                        
-                    
-                        
                 }
                 .frame(maxWidth: .infinity, alignment: .trailing)
             }
@@ -120,7 +114,7 @@ struct SoundView_Previews: PreviewProvider {
         Group {
             SoundView(isShowingModal: $isShowingModal)
                 .environmentObject(AudioViewModel())
-            .environmentObject(WatchConnectivityViewModel())
+                .environmentObject(WatchConnectivityViewModel())
         }
     }
 }
