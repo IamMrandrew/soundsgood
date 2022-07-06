@@ -18,8 +18,6 @@ struct DisplayDrawer: Codable {
     
     enum DisplayTypes: String, Identifiable, Codable {
         case musicalNotes
-        case dynamic
-        case xxx
         case none
         
         var id: String { rawValue }
@@ -27,8 +25,6 @@ struct DisplayDrawer: Codable {
         var label: String {
             switch self {
             case .musicalNotes: return "Musical notes"
-            case .dynamic: return "Dynamic"
-            case .xxx: return "xxx"
             case .none: return "None"
             }
           }
@@ -36,8 +32,6 @@ struct DisplayDrawer: Codable {
         var icon: String {
             switch self {
             case .musicalNotes: return "Musical notes"
-            case .dynamic: return "Dynamic"
-            case .xxx: return "xxx"
             case .none: return "None"
             }
         }

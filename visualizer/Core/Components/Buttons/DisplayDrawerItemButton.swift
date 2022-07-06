@@ -56,10 +56,6 @@ struct DisplayDrawerItemButton_Previews: PreviewProvider {
     static var previews: some View {
         DisplayDrawerItemButton(action: self.test, type: DisplayDrawer.DisplayTypes.musicalNotes, selected: true)
             .previewLayout(.fixed(width: 80, height: 80))
-        DisplayDrawerItemButton(action: self.test, type: DisplayDrawer.DisplayTypes.dynamic, selected: false)
-            .previewLayout(.fixed(width: 80, height: 80))
-        DisplayDrawerItemButton(action: self.test, type: DisplayDrawer.DisplayTypes.xxx, selected: false)
-            .previewLayout(.fixed(width: 80, height: 80))
     }
 }
 

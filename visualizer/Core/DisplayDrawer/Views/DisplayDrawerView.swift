@@ -32,24 +32,16 @@ struct DisplayDrawerView: View {
                 
                 Spacer()
                     .frame(height: 16)
+                
                 VStack(alignment: .leading){
                     HStack(){
                         VStack(){
                             DisplayDrawerItemButton(action: choose, type: DisplayDrawer.DisplayTypes.musicalNotes, selected: vm.isSelected(DisplayDrawer.DisplayTypes.musicalNotes))
                                 .previewLayout(.fixed(width: 64, height: 64))
                         }
-                        Spacer()
-                        VStack(){
-                            DisplayDrawerItemButton(action: choose, type: DisplayDrawer.DisplayTypes.dynamic, selected: vm.isSelected(DisplayDrawer.DisplayTypes.dynamic))
-                                .previewLayout(.fixed(width: 64, height: 64))
-                        }
-                        Spacer()
-                        VStack(){
-                            DisplayDrawerItemButton(action: choose, type: DisplayDrawer.DisplayTypes.xxx, selected: vm.isSelected(DisplayDrawer.DisplayTypes.xxx))
-                                .previewLayout(.fixed(width: 64, height: 64))
-                        }
                     }
                 }
+                .padding()
                 
                 Spacer()
                     .frame(height: 32)
