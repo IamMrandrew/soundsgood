@@ -33,7 +33,16 @@ struct SoundView: View {
                     
                     Spacer()
                     
-                    CaptureTimeButton(action: vm.switchCaptureTime,captureTime: vm.audio.captureTime)
+                    CaptureTimeButton(
+                        action: {
+                            vm.audio.recording.toggleRecording()
+                            
+                        },
+                        captureTime: vm.audio.captureTime,
+                        isRecording: vm.audio.recording.isRecording)
+//                    Text(String(vm.audio.recording.recordedAmplitude.count))
+//                    Text(String(vm.audio.recording.isRecording))
+//                    Text(String(vm.audio.recording.timeCap))
                     
                 }
                 .padding(.top, 72)

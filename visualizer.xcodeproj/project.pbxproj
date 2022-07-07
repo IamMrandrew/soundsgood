@@ -82,6 +82,7 @@
 		8EEFAF9127130F8000E3651D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EEFAF9027130F8000E3651D /* Assets.xcassets */; };
 		8EEFAF9427130F8000E3651D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EEFAF9327130F8000E3651D /* Preview Assets.xcassets */; };
 		B0624A6A286C3C80005849F0 /* DisplayDrawerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0624A69286C3C80005849F0 /* DisplayDrawerButton.swift */; };
+		B0713B7C28767B4F00C0A370 /* AudioRecording.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0713B7B28767B4E00C0A370 /* AudioRecording.swift */; };
 		B0C5D29F2875264C00CDC7CC /* DisplayDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C5D29E2875264C00CDC7CC /* DisplayDrawer.swift */; };
 		B0D97864286D4249003880F2 /* DisplayDrawerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D97863286D4249003880F2 /* DisplayDrawerViewModel.swift */; };
 		B0D97866286D4290003880F2 /* DisplayDrawerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D97865286D4290003880F2 /* DisplayDrawerView.swift */; };
@@ -237,6 +238,7 @@
 		8EEFAF9327130F8000E3651D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8EEFAFA12713146200E3651D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B0624A69286C3C80005849F0 /* DisplayDrawerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayDrawerButton.swift; sourceTree = "<group>"; };
+		B0713B7B28767B4E00C0A370 /* AudioRecording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecording.swift; sourceTree = "<group>"; };
 		B0C5D29E2875264C00CDC7CC /* DisplayDrawer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayDrawer.swift; sourceTree = "<group>"; };
 		B0D97863286D4249003880F2 /* DisplayDrawerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayDrawerViewModel.swift; sourceTree = "<group>"; };
 		B0D97865286D4290003880F2 /* DisplayDrawerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayDrawerView.swift; sourceTree = "<group>"; };
@@ -383,6 +385,7 @@
 				491041D027ADB32100196A2D /* Audio.swift */,
 				8E09213727BB803A00F540B6 /* TimbreDrawer.swift */,
 				B0C5D29E2875264C00CDC7CC /* DisplayDrawer.swift */,
+				B0713B7B28767B4E00C0A370 /* AudioRecording.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1033,6 +1036,7 @@
 				498F0BED274F808B00A46486 /* MoreButton.swift in Sources */,
 				498F0BF1274F909600A46486 /* DismissButton.swift in Sources */,
 				49DECB11273A730D00C992CE /* Typography.swift in Sources */,
+				B0713B7C28767B4F00C0A370 /* AudioRecording.swift in Sources */,
 				499451F827F471B000CB9BD0 /* AudioFeaturesDrawerView.swift in Sources */,
 				8E63BE2527B29DB6007735DF /* Harmonics.swift in Sources */,
 				8EEFAF8D27130F7E00E3651D /* visualizerApp.swift in Sources */,

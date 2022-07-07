@@ -29,7 +29,10 @@ struct Amplitudes: View {
                             if(!vm.isStarted){
                                 self.timer?.invalidate()
                             }else{
-                                self.timer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { (timer) in
+                                self.timer = Timer.scheduledTimer(
+                                    withTimeInterval: 0.05,
+                                    repeats: true)
+                                { (timer) in
                                     value = (vm.audio.lastAmplitude * 30, counter)
                                     if(counter == 10){
                                         counter = 0
