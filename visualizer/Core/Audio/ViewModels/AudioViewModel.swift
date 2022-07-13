@@ -33,7 +33,7 @@ class AudioViewModel: ObservableObject {
     
     @Published var timbreDrawerVM = TimbreDrawerViewModel()
     
-    @Published var DisplayDrawerVM = DisplayDrawerViewModel() // added 30/06/2022 John Yeung
+    @Published var DisplayDrawerVM = DisplayDrawerViewModel()
     
     @Published var isStarted: Bool = false
     
@@ -207,7 +207,8 @@ class AudioViewModel: ObservableObject {
         }
         // update the last captured amplitude
         self.audio.lastAmplitude = Double(amplitude[0])
-        
+        self.audio.recording.addAmplitude(lastAmplitude: self.audio.lastAmplitude)
+            
         self.updateReferenceTimbre()
         self.updateIsPitchAccurate()
     }
@@ -369,12 +370,16 @@ class AudioViewModel: ObservableObject {
     }
     
     func switchCaptureTime(){
-        let options:Array<Int> = [1, 3, 5, 10]
-        let i = options.firstIndex(of:self.audio.captureTime)!
-        if(i == options.count-1){
-            self.audio.captureTime = options[0]
-        }else{
-            self.audio.captureTime = options[i+1]
-        }
+//        let options:Array<Int> = [1, 3, 5, 10]
+//        let i = options.firstIndex(of:self.audio.captureTime)!
+//        if(i == options.count-1){
+//            self.audio.captureTime = options[0]
+//        }else{
+//            self.audio.captureTime = options[i+1]
+//        }
+        
+        self.audio.captureTime = 10 // fix the captured time as 10s
     }
+    
+    
 }
