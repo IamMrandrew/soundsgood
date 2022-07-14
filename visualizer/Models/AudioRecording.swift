@@ -5,6 +5,11 @@
 //  Created by John Yeung on 7/7/2022.
 //
 // an object storing the user recorded audio data
+//
+// USES:
+//      addAmplitude() -------> endRecording()
+//      toggleRecording()---/
+//                      \------>startRecording()
 
 import Foundation
 
@@ -31,10 +36,6 @@ struct AudioRecording {
         }
     }
     
-    func getRecording()-> Array<Double>{
-        return self.recordedAmplitude
-    }
-    
     mutating func startRecording(){
         self.isRecording = true
         self.recordedAmplitude = [] // reset the stored recording
@@ -44,8 +45,5 @@ struct AudioRecording {
         self.isRecording = false
     }
     
-    func getIsRecording()->Bool{
-        return self.isRecording
-    }
 }
 

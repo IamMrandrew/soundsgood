@@ -17,8 +17,11 @@ struct SoundView: View {
     @State private var showSheet: Bool = false
     @State private var showTutorial: Bool = false
     @State private var showDisplayDrawer: Bool = false
+    @State private var isShowingDisplayDrawerModal: Bool = false
+    @State private var showRecordingAnalyticsDrawer: Bool = false
+    @State private var isShowingRecordingAnalyticsDrawerModal: Bool = false
     @Binding var isShowingModal: Bool
-    
+    	
     var body: some View {
         ZStack {
             Color.neutral.background
@@ -35,6 +38,12 @@ struct SoundView: View {
                     
                     CaptureTimeButton(
                         action: {
+                            if (vm.audio.recording.isRecording){
+                                // user stop recording
+                                // display the analytics sheet
+                                showRecordingAnalyticsDrawer.toggle()
+                                isShowingRecordingAnalyticsDrawerModal.toggle()
+                            }
                             vm.audio.recording.toggleRecording()
                             
                         },
@@ -75,7 +84,7 @@ struct SoundView: View {
                     HStack(alignment: .top){
                         DisplayDrawerButton(action:{
                             showDisplayDrawer.toggle()
-                            isShowingModal.toggle()
+                            isShowingRecordingAnalyticsDrawerModal.toggle()
                         })
                             .padding(EdgeInsets(top: 15, leading: 0, bottom: 0, trailing: 0))
                         LiveDropdown(isWatchLive: $watchConnectVM.isLive,
@@ -108,9 +117,18 @@ struct SoundView: View {
             // show the DisplayDrawerView on DisplayDrawerButton (the one with layers icon) click
             ZStack {
                 DisplayDrawerView(isShowing: $showDisplayDrawer,
-                                 isShowingModal: $isShowingModal
+                                 isShowingModal: $isShowingDisplayDrawerModal
                 ).environmentObject(vm.DisplayDrawerVM)
                 
+            }
+            ZStack{
+                RecordingAnalyticsDrawerView(
+                    isShowing: $showRecordingAnalyticsDrawer,
+                    isShowingModal: $isShowingRecordingAnalyticsDrawerModal,
+                    onClose: {
+                        showRecordingAnalyticsDrawer.toggle()
+                        isShowingRecordingAnalyticsDrawerModal.toggle()
+                })
             }
         }
         
@@ -122,6 +140,7 @@ struct SoundView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             SoundView(isShowingModal: $isShowingModal)
+                .previewDevice("iPhone 12")
                 .environmentObject(AudioViewModel())
                 .environmentObject(WatchConnectivityViewModel())
         }

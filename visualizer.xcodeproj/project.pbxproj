@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E10EC73287FBA6A0080CA03 /* RecordingAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E10EC72287FBA6A0080CA03 /* RecordingAnalytics.swift */; };
+		2E10EC75287FC6DF0080CA03 /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E10EC74287FC6DF0080CA03 /* CloseButton.swift */; };
+		2E10EC77287FCA1C0080CA03 /* AnalyticsChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E10EC76287FCA1C0080CA03 /* AnalyticsChart.swift */; };
+		2EBE1011287E9BAD0088A609 /* RecordingAnalyticsDrawerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBE1010287E9BAD0088A609 /* RecordingAnalyticsDrawerView.swift */; };
+		2EBE1013287E9BC40088A609 /* RecordingAnalyticsDrawerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBE1012287E9BC40088A609 /* RecordingAnalyticsDrawerViewModel.swift */; };
 		4903949727EA2B55000B3AC0 /* TimbreTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4903949627EA2B55000B3AC0 /* TimbreTag.swift */; };
 		4906C6AB27537571001C52BC /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4906C6AA27537570001C52BC /* SettingViewModel.swift */; };
 		4906C6AD2753760D001C52BC /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4906C6AC2753760D001C52BC /* Setting.swift */; };
@@ -160,6 +165,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2E10EC72287FBA6A0080CA03 /* RecordingAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingAnalytics.swift; sourceTree = "<group>"; };
+		2E10EC74287FC6DF0080CA03 /* CloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButton.swift; sourceTree = "<group>"; };
+		2E10EC76287FCA1C0080CA03 /* AnalyticsChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsChart.swift; sourceTree = "<group>"; };
+		2EBE1010287E9BAD0088A609 /* RecordingAnalyticsDrawerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingAnalyticsDrawerView.swift; sourceTree = "<group>"; };
+		2EBE1012287E9BC40088A609 /* RecordingAnalyticsDrawerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingAnalyticsDrawerViewModel.swift; sourceTree = "<group>"; };
 		4903949627EA2B55000B3AC0 /* TimbreTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimbreTag.swift; sourceTree = "<group>"; };
 		4906C6AA27537570001C52BC /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		4906C6AC2753760D001C52BC /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Setting.swift; path = visualizer/Models/Setting.swift; sourceTree = SOURCE_ROOT; };
@@ -293,9 +303,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2EBE100D287E9B530088A609 /* RecordingAnalyticsDrawer */ = {
+			isa = PBXGroup;
+			children = (
+				2EBE100F287E9B840088A609 /* ViewModels */,
+				2EBE100E287E9B7D0088A609 /* Views */,
+			);
+			path = RecordingAnalyticsDrawer;
+			sourceTree = "<group>";
+		};
+		2EBE100E287E9B7D0088A609 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2EBE1010287E9BAD0088A609 /* RecordingAnalyticsDrawerView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2EBE100F287E9B840088A609 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				2EBE1012287E9BC40088A609 /* RecordingAnalyticsDrawerViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		4910418027AC34D800196A2D /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				2EBE100D287E9B530088A609 /* RecordingAnalyticsDrawer */,
 				B0624A6B286C3F9E005849F0 /* DisplayDrawer */,
 				499451F427F4716C00CB9BD0 /* AudioFeaturesDrawer */,
 				8E09211E27BA97D900F540B6 /* TimbreDrawer */,
@@ -386,6 +422,7 @@
 				8E09213727BB803A00F540B6 /* TimbreDrawer.swift */,
 				B0C5D29E2875264C00CDC7CC /* DisplayDrawer.swift */,
 				B0713B7B28767B4E00C0A370 /* AudioRecording.swift */,
+				2E10EC72287FBA6A0080CA03 /* RecordingAnalytics.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -539,6 +576,7 @@
 				8E2AD444280B149E003976DE /* CaptureTimeButton.swift */,
 				B0624A69286C3C80005849F0 /* DisplayDrawerButton.swift */,
 				B0D97867286D473B003880F2 /* DisplayDrawerItemButton.swift */,
+				2E10EC74287FC6DF0080CA03 /* CloseButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -562,6 +600,7 @@
 				8E63BE2427B29DB6007735DF /* Harmonics.swift */,
 				49EFBECF27E9E99E000925E5 /* ReferenceBar.swift */,
 				8E69A986280AC87000BD9376 /* Amplitudes.swift */,
+				2E10EC76287FCA1C0080CA03 /* AnalyticsChart.swift */,
 			);
 			path = Visuals;
 			sourceTree = "<group>";
@@ -1012,6 +1051,7 @@
 				B0D97866286D4290003880F2 /* DisplayDrawerView.swift in Sources */,
 				49EFBED027E9E99F000925E5 /* ReferenceBar.swift in Sources */,
 				4903949727EA2B55000B3AC0 /* TimbreTag.swift in Sources */,
+				2E10EC77287FCA1C0080CA03 /* AnalyticsChart.swift in Sources */,
 				8EECA38F27382E800083FD02 /* Frequencies.swift in Sources */,
 				49D6F7F1274939D000CDCCE4 /* PitchNotation.swift in Sources */,
 				8EECA39327384BC30083FD02 /* Axis.swift in Sources */,
@@ -1029,11 +1069,15 @@
 				8E69A985280A5B7700BD9376 /* AmplitudeBuffer.swift in Sources */,
 				8E2AD445280B149E003976DE /* CaptureTimeButton.swift in Sources */,
 				8EECA395273852030083FD02 /* ViewExtension.swift in Sources */,
+				2E10EC75287FC6DF0080CA03 /* CloseButton.swift in Sources */,
 				8E8DB88027380AD30010FE7E /* PitchIndicator.swift in Sources */,
 				8EECA397273856200083FD02 /* DrawerButton.swift in Sources */,
+				2EBE1013287E9BC40088A609 /* RecordingAnalyticsDrawerViewModel.swift in Sources */,
 				492D8BFF27C51B8E006964D7 /* Cello.swift in Sources */,
 				4910419327AC37FA00196A2D /* InteractiveTutorialViewModel.swift in Sources */,
 				498F0BED274F808B00A46486 /* MoreButton.swift in Sources */,
+				2EBE1011287E9BAD0088A609 /* RecordingAnalyticsDrawerView.swift in Sources */,
+				2E10EC73287FBA6A0080CA03 /* RecordingAnalytics.swift in Sources */,
 				498F0BF1274F909600A46486 /* DismissButton.swift in Sources */,
 				49DECB11273A730D00C992CE /* Typography.swift in Sources */,
 				B0713B7C28767B4F00C0A370 /* AudioRecording.swift in Sources */,
