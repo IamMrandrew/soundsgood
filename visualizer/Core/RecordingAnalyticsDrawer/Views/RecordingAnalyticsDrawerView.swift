@@ -14,6 +14,8 @@ struct RecordingAnalyticsDrawerView: View {
     @Binding var isShowing: Bool
     @Binding var isShowingModal: Bool
     
+    @State private var analyticsMode: RecordingAnalyticsDrawer.AnalyticsTypes = .notes
+    
     let onClose: () -> Void
     
     var body: some View {
@@ -35,20 +37,22 @@ struct RecordingAnalyticsDrawerView: View {
                 }
                 HStack(){
                     Spacer()
-                    Button("Notes", action: {
-                        recordingAnalyticsDrawerVM.recordingAnalyticsDrawer.selected = RecordingAnalyticsDrawer.AnalyticsTypes.notes
-                    })
-                    Button("Melody", action: {
-                        recordingAnalyticsDrawerVM.recordingAnalyticsDrawer.selected = RecordingAnalyticsDrawer.AnalyticsTypes.melody
-                    })
+                    Picker("Analysis Mode", selection: $analyticsMode) {
+                        Text(RecordingAnalyticsDrawer.AnalyticsTypes.notes.label)
+                            .tag(RecordingAnalyticsDrawer.AnalyticsTypes.notes)
+                        Text(RecordingAnalyticsDrawer.AnalyticsTypes.melody.label)
+                            .tag(RecordingAnalyticsDrawer.AnalyticsTypes.melody)
+                    }
+                    .pickerStyle(.segmented)
                     Spacer()
                 }
                 
                 Amplitudes()
-                if (recordingAnalyticsDrawerVM.isSelected(RecordingAnalyticsDrawer.AnalyticsTypes.notes)){
+                switch analyticsMode {
+                case .notes:
                     AnalyticsChart(title: "Dynamic", descriptiveText: "How consistent your dyanmic is")
                     AnalyticsChart(title: "Accuracy", descriptiveText: "How many percent you are in tune")
-                } else if (recordingAnalyticsDrawerVM.isSelected(RecordingAnalyticsDrawer.AnalyticsTypes.melody)){
+                case .melody:
                     AnalyticsChart(title: "Dynamic", descriptiveText: "Attack, Sustain, Release, Decay")
                     AnalyticsChart(title: "Accuracy", descriptiveText: "How your pitch change within a tune")
                 }

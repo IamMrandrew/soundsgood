@@ -61,6 +61,21 @@ struct SoundView: View {
                     SettingView(showTutorial: $showTutorial)
                         .environmentObject(vm.settingVM)
                 })
+                .sheet(isPresented: $showDisplayDrawer, content: {
+                    DisplayDrawerView(isShowing: $showDisplayDrawer,
+                                     isShowingModal: $isShowingDisplayDrawerModal
+                    )
+                    .environmentObject(vm.DisplayDrawerVM)
+                })
+                .sheet(isPresented: $showRecordingAnalyticsDrawer, content: {
+                    RecordingAnalyticsDrawerView(
+                        isShowing: $showRecordingAnalyticsDrawer,
+                        isShowingModal: $isShowingRecordingAnalyticsDrawerModal,
+                        onClose: {
+                            showRecordingAnalyticsDrawer.toggle()
+                            isShowingRecordingAnalyticsDrawerModal.toggle()
+                        }).environmentObject(vm.RecordingAnalyticsVM)
+                })
                 
                 
                 VStack(alignment: .trailing) {
@@ -114,22 +129,7 @@ struct SoundView: View {
                 }
             
             }
-            // show the DisplayDrawerView on DisplayDrawerButton (the one with layers icon) click
-            ZStack {
-                DisplayDrawerView(isShowing: $showDisplayDrawer,
-                                 isShowingModal: $isShowingDisplayDrawerModal
-                ).environmentObject(vm.DisplayDrawerVM)
-                
-            }
-            ZStack{
-                RecordingAnalyticsDrawerView(
-                    isShowing: $showRecordingAnalyticsDrawer,
-                    isShowingModal: $isShowingRecordingAnalyticsDrawerModal,
-                    onClose: {
-                        showRecordingAnalyticsDrawer.toggle()
-                        isShowingRecordingAnalyticsDrawerModal.toggle()
-                })
-            }
+            
         }
         
     }

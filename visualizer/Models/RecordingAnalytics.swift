@@ -14,11 +14,11 @@ struct RecordingAnalyticsDrawer: Codable {
         selected: .notes
     )
     
-    enum AnalyticsTypes: String, Identifiable, Codable {
+    enum AnalyticsTypes: CaseIterable, Identifiable, Codable{
         case notes
         case melody
         
-        var id: String { rawValue }
+        var id: String { label }
         
         var label: String {
             switch self {
