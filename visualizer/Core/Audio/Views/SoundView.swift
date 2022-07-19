@@ -17,9 +17,10 @@ struct SoundView: View {
     @State private var showSheet: Bool = false
     @State private var showTutorial: Bool = false
     @State private var showDisplayDrawer: Bool = false
-    @State private var isShowingDisplayDrawerModal: Bool = false
     @State private var showRecordingAnalyticsDrawer: Bool = false
-    @State private var isShowingRecordingAnalyticsDrawerModal: Bool = false
+    
+    // A global state to know if any custom modal (DrawerView) is showing
+    // so that a cover for tab will appear/ disappear
     @Binding var isShowingModal: Bool
     	
     var body: some View {
@@ -42,13 +43,16 @@ struct SoundView: View {
                                 // user stop recording
                                 // display the analytics sheet
                                 showRecordingAnalyticsDrawer.toggle()
-                                isShowingRecordingAnalyticsDrawerModal.toggle()
                             }
                             vm.audio.recording.toggleRecording()
                             
                         },
                         captureTime: vm.audio.captureTime,
                         isRecording: vm.audio.recording.isRecording)
+                    
+                    Spacer()
+                        .frame(height: 60)
+                    
 //                    Text(String(vm.audio.recording.recordedAmplitude.count))
 //                    Text(String(vm.audio.recording.isRecording))
 //                    Text(String(vm.audio.recording.timeCap))
@@ -61,20 +65,9 @@ struct SoundView: View {
                     SettingView(showTutorial: $showTutorial)
                         .environmentObject(vm.settingVM)
                 })
-                .sheet(isPresented: $showDisplayDrawer, content: {
-                    DisplayDrawerView(isShowing: $showDisplayDrawer,
-                                     isShowingModal: $isShowingDisplayDrawerModal
-                    )
-                    .environmentObject(vm.DisplayDrawerVM)
-                })
                 .sheet(isPresented: $showRecordingAnalyticsDrawer, content: {
-                    RecordingAnalyticsDrawerView(
-                        isShowing: $showRecordingAnalyticsDrawer,
-                        isShowingModal: $isShowingRecordingAnalyticsDrawerModal,
-                        onClose: {
-                            showRecordingAnalyticsDrawer.toggle()
-                            isShowingRecordingAnalyticsDrawerModal.toggle()
-                        }).environmentObject(vm.RecordingAnalyticsVM)
+                    RecordingAnalyticsDrawerView(isShowing: $showRecordingAnalyticsDrawer)
+                        .environmentObject(vm.RecordingAnalyticsVM)
                 })
                 
                 
@@ -99,7 +92,7 @@ struct SoundView: View {
                     HStack(alignment: .top){
                         DisplayDrawerButton(action:{
                             showDisplayDrawer.toggle()
-                            isShowingRecordingAnalyticsDrawerModal.toggle()
+                            isShowingModal.toggle()
                         })
                             .padding(EdgeInsets(top: 15, leading: 0, bottom: 0, trailing: 0))
                         LiveDropdown(isWatchLive: $watchConnectVM.isLive,
@@ -112,6 +105,7 @@ struct SoundView: View {
                 }
                 .frame(maxWidth: .infinity, alignment: .trailing)
             }
+            
             ZStack {
                 if (showTutorial) {
                     InteractiveTutorialView(showTutorial: $showTutorial,
@@ -129,6 +123,14 @@ struct SoundView: View {
                 }
             
             }
+            
+            // show the DisplayDrawerView on DisplayDrawerButton (the one with layers icon) click
+             ZStack {
+                 DisplayDrawerView(isShowing: $showDisplayDrawer,
+                                  isShowingModal: $isShowingModal
+                 ).environmentObject(vm.DisplayDrawerVM)
+
+             }
             
         }
         

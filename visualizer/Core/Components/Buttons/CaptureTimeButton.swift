@@ -16,21 +16,13 @@ struct CaptureTimeButton: View {
         Button {
             self.action()
         } label: {
-            if (self.isRecording){
-                Image(systemName: "mic.fill")
-                    .frame(width: 96, height: 48)
-                    .foregroundColor(Color(.systemRed))
-                    .background(Color.neutral.surface)
-                    .clipShape(Rectangle())
-                    .font(.system(size: 22))
-            } else{
-                Image(systemName: "mic.fill")
-                    .frame(width: 96, height: 48)
-                    .foregroundColor(.neutral.onSurface)
-                    .background(Color.neutral.surface)
-                    .clipShape(Rectangle())
-                    .font(.system(size: 22))
-            }
+            Image(systemName: "mic.fill")
+                .font(.system(size: 18))
+                .frame(width: 104)
+                .padding(10)
+                .foregroundColor(Color.neutral.onSurface)
+                .background(self.isRecording ? Color(.systemRed) : Color.neutral.surface)
+                .cornerRadius(20)
         }
     }
 }
