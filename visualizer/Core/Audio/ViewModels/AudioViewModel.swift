@@ -383,6 +383,179 @@ class AudioViewModel: ObservableObject {
         
         self.audio.captureTime = 10 // fix the captured time as 10s
     }
+    // reference to this https://github.com/CUHK-CMD/cmd-splitter/blob/master/Source/Splitter.h
+//    // MARK: DSP related
+//
+//        // 1. Split audio by silence
+//        // splitAudioBySilenceWithAmp: ampThreshold as parameter directly
+//        // splitAudioBySilence: ampThreshold will be calculated from the percentage parameter
+//
+//        // ampThreshold: consider amplitude within this value to be silence
+//        // durationInSec: split if silence persist equal to or longer than this value
+//
+//        void splitAudioBySilenceWithAmp(std::unique_ptr<float[]> &data, float ampThreshold, float durationInSec)
+//        {
+//            int durationInSamp = static_cast<int>(durationInSec * sampRate);
+//
+//            int continSilentSamp = 0;
+//            bool splitPtFound = false;
+//
+//            for (int pos = 0; pos < nSamples; pos++)
+//            {
+//                if (fabs(data[pos]) < ampThreshold)
+//                    continSilentSamp++;
+//                else
+//                {
+//                    continSilentSamp = 0;
+//                    if (splitPtFound == true)
+//                        splitPtFound = false;
+//                }
+//                if (continSilentSamp == durationInSamp && splitPtFound == false)
+//                {
+//                    printf("Split point: %.6f at %.2f\n", data[pos], static_cast<float>(pos) / sampRate);
+//                    splitPtFound = true;
+//                }
+//            }
+//        }
+    // created by John Yeung 20/07/2022
+    func splitAudioBySilenceWithAmp(data: Array<Float>, ampThreshold: Float, durationInSec: double_t)->[[Float]]{
+        let durationInSamp: Int = Int(durationInSec * SAMPLE_RATE)  // length of the audio
+        
+        var continSilentSamp: Int = 0
+        var splitPtFound: Bool = false                      // is a silent amplitude found?
+        
+        let ignoreTimeThreshold: Int = 0                    // min bin length for non-silence data to be added into the return array
+        var splittedAudio = [[Float]]()                     // the returned audio, contain slices of input data, cut according to slience data in between
+        
+        var dataAfterFirst: Array<Float> = data             // data is immutable, need to make a copy
+        
+        // reference to https://developer.apple.com/documentation/swift/arrayslice
+        while let i = dataAfterFirst.firstIndex(where: { abs($0) < ampThreshold }) { // while there is silent point in data
+            splitPtFound = true                                 // mark that a Silent data was found ( do we need this?
+            continSilentSamp += 1                               // count of amplitude data less then the threshold
+            
+            if (i > ignoreTimeThreshold){    // if 2 silent pts are seperated at least ignoreTimeThreshold indices away
+                splittedAudio.append(Array(dataAfterFirst[..<i]))   // cut the data between silence point and append to result
+            }
+            
+            dataAfterFirst = Array(dataAfterFirst[(i + 1)...])  // update dataAfterFirst with the remaining ampitude data
+        }
+        
+        return splittedAudio
+        
+    }
+//
+//        void splitAudioBySilence(std::unique_ptr<float[]> &data, float percentage, float durationInSec)
+//        {
+//            int durationInSamp = static_cast<int>(durationInSec * sampRate);
+//            float maxAmp = getMaxAmplitude(data);
+//            float ampThreshold = maxAmp * percentage;
+//
+//            int continSilentSamp = 0;
+//            bool splitPtFound = false;
+//
+//            for (int pos = 0; pos < nSamples; pos++)
+//            {
+//                if (fabs(data[pos]) < ampThreshold)
+//                    continSilentSamp++;
+//                else
+//                {
+//                    continSilentSamp = 0;
+//                    if (splitPtFound == true)
+//                        splitPtFound = false;
+//                }
+//                if (continSilentSamp == durationInSamp && splitPtFound == false)
+//                {
+//                    printf("Split point: %.6f at %.2f\n", data[pos], static_cast<float>(pos) / sampRate);
+//                    splitPtFound = true;
+//                }
+//            }
+//        }
+    // created by John Yeung 20/07/2022
+    func splitAudioBySilence(data: Array<Float>, percentage: Float, durationInSec: double_t)->Void{
+        let maxAmp: Float = data.max() ?? 0.0 // data.max returns optional, set 0.0 as default value
+        let ampThreshold: Float = maxAmp * percentage
+        
+        splitAudioBySilenceWithAmp(data: data, ampThreshold: ampThreshold, durationInSec: durationInSec)
+    }
+    
+//
+//        // Return the absolute value of the maximum amplitude
+//        float getMaxAmplitude(std::unique_ptr<float[]> &data)
+//        {
+//            float maxAmp = data[0];
+//            for (int pos = 1; pos < nSamples; pos++)
+//            {
+//                float ampAtPos = fabs(data[pos]);
+//                if (ampAtPos > maxAmp)
+//                {
+//                    maxAmp = ampAtPos;
+//                }
+//            }
+//            return maxAmp;
+//        }
+//
+//        // 2. Split audio by pitch difference
+//
+//        void splitAudioByFreq(std::unique_ptr<float[]> &data)
+//        {
+//            int fftResolution = 12;
+//            std::string prevNote = "NULL";
+//            std::string currNote;
+//            for (int leftPosition = 0;; leftPosition += 1 << (fftResolution-1))
+//            {
+//                if (leftPosition + (1 << fftResolution) > nSamples)
+//                {
+//                    break;
+//                }
+//
+//                // Apply cepstrum
+//                std::unique_ptr<FFTCalc> fftItem = std::make_unique<FFTCalc>(data.get() + leftPosition, fftResolution);
+//                fftItem->initHammingWindow();
+//                fftItem->applyHammingWindow();
+//                fftItem->transformToCepstrum();
+//
+//                // Compare note change
+//                int invFrequency = fftItem->findMaxBinInCepstrum();
+//                currNote = convertFreqToNote(invFrequency);
+//                printf("%s\n", currNote.c_str());
+//    //                DBOUT(std::to_string(invFrequency) + " " + noteName + "\n");
+//
+//                if (currNote.compare(prevNote) != 0)
+//                {
+//                    printf("Split point: %.6f at %.2f\n", data[leftPosition], static_cast<float>(leftPosition) / sampRate);
+//                    prevNote.assign(currNote);
+//                }
+//
+//            }
+//        }
+    // TODO: NOT FINISHED
+    // requires raw audio data as input
+    func splitAudioByFreq(data: Array<Float>, nSamples: Int)->Void{
+        let fftResolution: Int = 12
+        var preNote: String = "NULL"
+        var currNote: String
+        var leftPosition: Int = 0
+        while (!((leftPosition + (1 << fftResolution)) > nSamples)){ // while not out of bound
+            
+            
+            
+            leftPosition = leftPosition + (1 << (fftResolution-1))
+        }
+    }
+//
+//        // the noteID of A4 is 69
+//        std::string convertFreqToNote(int invFrequency)
+//        {
+//            std::string notes[] = {"A", "Bb", "B", "C", "C#", "D", "Eb", "E", "F", "F#", "G", "Ab"};
+//            float frequency = (float) sampRate / (float) invFrequency;
+//
+//            int noteID = 69 + (int)round(12.0f * std::log2(frequency / 440.0f));
+//            int octave = noteID / 12 - 1;
+//
+//            return notes[(noteID + 3) % 12] + std::to_string(octave);
+//        }
+    
     
     
 }
