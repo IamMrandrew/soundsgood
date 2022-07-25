@@ -17,8 +17,12 @@ struct SoundView: View {
     @State private var showSheet: Bool = false
     @State private var showTutorial: Bool = false
     @State private var showDisplayDrawer: Bool = false
-    @Binding var isShowingModal: Bool
+    @State private var showRecordingAnalyticsDrawer: Bool = false
     
+    // A global state to know if any custom modal (DrawerView) is showing
+    // so that a cover for tab will appear/ disappear
+    @Binding var isShowingModal: Bool
+    	
     var body: some View {
         ZStack {
             Color.neutral.background
@@ -35,11 +39,20 @@ struct SoundView: View {
                     
                     CaptureTimeButton(
                         action: {
+                            if (vm.audio.recording.isRecording){
+                                // user stop recording
+                                // display the analytics sheet
+                                showRecordingAnalyticsDrawer.toggle()
+                            }
                             vm.audio.recording.toggleRecording()
                             
                         },
                         captureTime: vm.audio.captureTime,
                         isRecording: vm.audio.recording.isRecording)
+                    
+                    Spacer()
+                        .frame(height: 60)
+                    
 //                    Text(String(vm.audio.recording.recordedAmplitude.count))
 //                    Text(String(vm.audio.recording.isRecording))
 //                    Text(String(vm.audio.recording.timeCap))
@@ -51,6 +64,10 @@ struct SoundView: View {
                 .sheet(isPresented: $showSheet, content: {
                     SettingView(showTutorial: $showTutorial)
                         .environmentObject(vm.settingVM)
+                })
+                .sheet(isPresented: $showRecordingAnalyticsDrawer, content: {
+                    RecordingAnalyticsDrawerView(isShowing: $showRecordingAnalyticsDrawer)
+                        .environmentObject(vm.RecordingAnalyticsVM)
                 })
                 
                 
@@ -88,6 +105,7 @@ struct SoundView: View {
                 }
                 .frame(maxWidth: .infinity, alignment: .trailing)
             }
+            
             ZStack {
                 if (showTutorial) {
                     InteractiveTutorialView(showTutorial: $showTutorial,
@@ -105,13 +123,15 @@ struct SoundView: View {
                 }
             
             }
+            
             // show the DisplayDrawerView on DisplayDrawerButton (the one with layers icon) click
-            ZStack {
-                DisplayDrawerView(isShowing: $showDisplayDrawer,
-                                 isShowingModal: $isShowingModal
-                ).environmentObject(vm.DisplayDrawerVM)
-                
-            }
+             ZStack {
+                 DisplayDrawerView(isShowing: $showDisplayDrawer,
+                                  isShowingModal: $isShowingModal
+                 ).environmentObject(vm.DisplayDrawerVM)
+
+             }
+            
         }
         
     }
@@ -122,6 +142,7 @@ struct SoundView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             SoundView(isShowingModal: $isShowingModal)
+                .previewDevice("iPhone 12")
                 .environmentObject(AudioViewModel())
                 .environmentObject(WatchConnectivityViewModel())
         }
