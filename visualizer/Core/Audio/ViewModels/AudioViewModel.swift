@@ -418,16 +418,16 @@ class AudioViewModel: ObservableObject {
 //            }
 //        }
     // created by John Yeung 20/07/2022
-    func splitAudioBySilenceWithAmp(data: Array<Float>, ampThreshold: Float, durationInSec: double_t)->[[Float]]{
+    func splitAudioBySilenceWithAmp(data: Array<Double>, ampThreshold: Double, durationInSec: Double)->[[Double]]{
         let durationInSamp: Int = Int(durationInSec * SAMPLE_RATE)  // length of the audio
         
         var continSilentSamp: Int = 0
         var splitPtFound: Bool = false                      // is a silent amplitude found?
         
         let ignoreTimeThreshold: Int = 0                    // min bin length for non-silence data to be added into the return array
-        var splittedAudio = [[Float]]()                     // the returned audio, contain slices of input data, cut according to slience data in between
+        var splittedAudio = [[Double]]()                     // the returned audio, contain slices of input data, cut according to slience data in between
         
-        var dataAfterFirst: Array<Float> = data             // data is immutable, need to make a copy
+        var dataAfterFirst: Array<Double> = data             // data is immutable, need to make a copy
         
         // reference to https://developer.apple.com/documentation/swift/arrayslice
         while let i = dataAfterFirst.firstIndex(where: { abs($0) < ampThreshold }) { // while there is silent point in data
@@ -472,11 +472,11 @@ class AudioViewModel: ObservableObject {
 //            }
 //        }
     // created by John Yeung 20/07/2022
-    func splitAudioBySilence(data: Array<Float>, percentage: Float, durationInSec: double_t)->Void{
-        let maxAmp: Float = data.max() ?? 0.0 // data.max returns optional, set 0.0 as default value
-        let ampThreshold: Float = maxAmp * percentage
+    func splitAudioBySilence(data: Array<Double>, percentage: Double, durationInSec: Double)->[[Double]]{
+        let maxAmp: Double = data.max() ?? 0.0 // data.max returns optional, set 0.0 as default value
+        let ampThreshold: Double = maxAmp * percentage
         
-        splitAudioBySilenceWithAmp(data: data, ampThreshold: ampThreshold, durationInSec: durationInSec)
+        return splitAudioBySilenceWithAmp(data: data, ampThreshold: ampThreshold, durationInSec: durationInSec)
     }
     
 //

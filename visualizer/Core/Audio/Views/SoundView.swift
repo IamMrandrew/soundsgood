@@ -43,6 +43,7 @@ struct SoundView: View {
                                 // user stop recording
                                 // display the analytics sheet
                                 showRecordingAnalyticsDrawer.toggle()
+                                vm.audio.recording.splittedRecordingByAmp = vm.splitAudioBySilence(data: vm.audio.recording.recordedAmplitude, percentage: 0.1, durationInSec: 10.0)
                             }
                             vm.audio.recording.toggleRecording()
                             
