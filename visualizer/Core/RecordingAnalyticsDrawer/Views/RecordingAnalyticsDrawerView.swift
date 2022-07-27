@@ -59,11 +59,11 @@ struct RecordingAnalyticsDrawerView: View {
         VStack(alignment: .leading) {
             switch analyticsMode {
             case .notes:
-                AnalyticsChart(title: "Dynamic", descriptiveText: "How consistent your dyanmic is")
-                AnalyticsChart(title: "Accuracy", descriptiveText: "How many percent you are in tune")
+                AnalyticsChart(title: "Dynamic", descriptiveText: "How consistent your dyanmic is", data: audioVM.audio.recording.recordedAmplitude)
+                AnalyticsChart(title: "Accuracy", descriptiveText: "How many percent you are in tune", data: audioVM.audio.recording.recordedAmplitude)
             case .melody:
-                AnalyticsChart(title: "Dynamic", descriptiveText: "Attack, Sustain, Release, Decay")
-                AnalyticsChart(title: "Accuracy", descriptiveText: "How your pitch change within a tune")
+                AnalyticsChart(title: "Dynamic", descriptiveText: "Attack, Sustain, Release, Decay", data: audioVM.audio.recording.recordedAmplitude)
+                AnalyticsChart(title: "Accuracy", descriptiveText: "How your pitch change within a tune", data: audioVM.audio.recording.recordedAmplitude)
             }
         }
         .frame(maxWidth: .infinity,maxHeight: .infinity, alignment: .top)
