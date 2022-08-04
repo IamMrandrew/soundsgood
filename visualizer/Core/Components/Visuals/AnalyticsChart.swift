@@ -20,23 +20,23 @@ struct AnalyticsChart: View {
         }
     }
     var body: some View {
-        VStack {
-            HStack(){
-                Text(title)
-                .font(.system(size: 18))
-                .bold()
-                .padding(.leading)
-                Spacer()
-            }
-            // Amplitudes()// to be replaced by the line chart later
+        VStack(alignment: .leading) {
+            Text(title)
+                .font(.label.medium)
+            
+            Spacer()
+                .frame(height: 8)
+            
             LineChart(chartData: chartData)
                 .pointMarkers(chartData: chartData)
                 .xAxisGrid(chartData: chartData)
             
-            HStack(){
-                Text(descriptiveText).padding([.leading, .bottom])
-                Spacer()
-            }
+            Spacer()
+                .frame(height: 8)
+            
+            Text(descriptiveText)
+                .foregroundColor(.neutral.onBackgroundVariant)
+                .font(.label.xsmall)
         }
     }
     
@@ -49,14 +49,14 @@ struct AnalyticsChart: View {
         let chartData = LineDataSet(dataPoints: chartDataSet,
                                     pointStyle: PointStyle(pointSize:0.0, lineWidth: 0.0),
                                     style: LineStyle(
-                                        lineColour: ColourStyle(colour: .red),
+                                        lineColour: ColourStyle(colour: .accent.highlight),
                                         lineType: .line))
            
         let metadata   : ChartMetadata  = ChartMetadata(title       : "",
                                                         subtitle    : "")
         
 
-        let gridStyle   : GridStyle     = GridStyle(lineColour  : Color(.lightGray).opacity(0.25),
+        let gridStyle   : GridStyle     = GridStyle(lineColour  : .neutral.axis,
                                                     lineWidth   : 1,
                                                     dash: [CGFloat]())
         

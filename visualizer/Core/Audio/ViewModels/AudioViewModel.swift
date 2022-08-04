@@ -210,7 +210,6 @@ class AudioViewModel: ObservableObject {
         }
         // update the last captured amplitude
         self.audio.lastAmplitude = Double(amplitude[0])
-        self.audio.recording.addAmplitude(lastAmplitude: self.audio.lastAmplitude)
             
         self.updateReferenceTimbre()
         self.updateIsPitchAccurate()
@@ -435,7 +434,10 @@ class AudioViewModel: ObservableObject {
             continSilentSamp += 1                               // count of amplitude data less then the threshold
             
             if (i > ignoreTimeThreshold){    // if 2 silent pts are seperated at least ignoreTimeThreshold indices away
-                splittedAudio.append(Array(dataAfterFirst[..<i]))   // cut the data between silence point and append to result
+//                splittedAudio.append(Array(dataAfterFirst[..<i]))   // cut the data between silence point and append to result
+                
+                // To display the entire recorded sound, including the silent part
+                splittedAudio.append(Array(dataAfterFirst))
             }
             
             dataAfterFirst = Array(dataAfterFirst[(i + 1)...])  // update dataAfterFirst with the remaining ampitude data

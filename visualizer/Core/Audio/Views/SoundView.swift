@@ -44,6 +44,8 @@ struct SoundView: View {
                                 // display the analytics sheet
                                 showRecordingAnalyticsDrawer.toggle()
                                 vm.audio.recording.splittedRecordingByAmp = vm.splitAudioBySilence(data: vm.audio.recording.recordedAmplitude, percentage: 0.1, durationInSec: 10.0)
+                                print("DEBUG: Before \(vm.audio.recording.recordedAmplitude)")
+                                print("DEBUG: After \(vm.audio.recording.splittedRecordingByAmp)")
                             }
                             vm.audio.recording.toggleRecording()
                             
@@ -69,6 +71,7 @@ struct SoundView: View {
                 .sheet(isPresented: $showRecordingAnalyticsDrawer, content: {
                     RecordingAnalyticsDrawerView(isShowing: $showRecordingAnalyticsDrawer)
                         .environmentObject(vm.RecordingAnalyticsVM)
+                        .environmentObject(vm)
                 })
                 
                 
