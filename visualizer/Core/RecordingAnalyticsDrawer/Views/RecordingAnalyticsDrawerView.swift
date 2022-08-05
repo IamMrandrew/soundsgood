@@ -14,7 +14,8 @@ struct RecordingAnalyticsDrawerView: View {
     @EnvironmentObject var audioVM: AudioViewModel
     @Binding var isShowing: Bool
     
-    @State private var analyticsMode: RecordingAnalyticsDrawer.AnalyticsTypes = .notes
+    @State private var analyticsMode: RecordingAnalyticsDrawer.AnalyticsTypes = .melody
+    @State private var noteSelectedToAnalyze: Int = 0
     
     var body: some View {
         VStack {
@@ -46,10 +47,10 @@ struct RecordingAnalyticsDrawerView: View {
                 HStack(){
                     Spacer()
                     Picker("Analysis Mode", selection: $analyticsMode) {
-                        Text(RecordingAnalyticsDrawer.AnalyticsTypes.notes.label)
-                            .tag(RecordingAnalyticsDrawer.AnalyticsTypes.notes)
                         Text(RecordingAnalyticsDrawer.AnalyticsTypes.melody.label)
                             .tag(RecordingAnalyticsDrawer.AnalyticsTypes.melody)
+                        Text(RecordingAnalyticsDrawer.AnalyticsTypes.notes.label)
+                            .tag(RecordingAnalyticsDrawer.AnalyticsTypes.notes)
                     }
                     .pickerStyle(.segmented)
                     Spacer()
@@ -63,7 +64,9 @@ struct RecordingAnalyticsDrawerView: View {
                 .frame(height: 32)
             
             VStack {
-                RecordingAmplitudes(amplitudes: audioVM.audio.recording.splittedRecordingByAmp)
+                RecordingAmplitudes(amplitudes: audioVM.audio.recording.recordedAmplitude,
+                                    noteSelectedToAnalyze: $noteSelectedToAnalyze,
+                                    splittedNoteIndices: audioVM.audio.recording.splittedNoteIndices)
             }
             .frame(maxWidth: .infinity, maxHeight: 150)
             .background(Color("surfaceVariant"))
@@ -73,27 +76,35 @@ struct RecordingAnalyticsDrawerView: View {
             
             VStack(alignment: .leading) {
                 switch analyticsMode {
-                case .notes:
-                    VStack {
-                        AnalyticsChart(title: "Dynamic", descriptiveText: "How consistent your dyanmic is", data: audioVM.audio.recording.recordedAmplitude)
-                        
-                        Spacer()
-                            .frame(height: 32)
-                        
-                        AnalyticsChart(title: "Accuracy", descriptiveText: "How many percent you are in tune", data: audioVM.audio.recording.recordedAmplitude)
-                    }
                 case .melody:
                     VStack {
-                        AnalyticsChart(title: "Dynamic", descriptiveText: "Attack, Sustain, Release, Decay", data: audioVM.audio.recording.recordedAmplitude)
+                        AnalyticsChart(title: "Dynamic",
+                                       descriptiveText: "How consistent your dynamic is",
+                                       data: audioVM.audio.recording.recordedAmplitude)
                         
                         Spacer()
                             .frame(height: 32)
                         
-                        AnalyticsChart(title: "Accuracy", descriptiveText: "How your pitch change within a tune", data: audioVM.audio.recording.recordedAmplitude)
+                        AnalyticsChart(title: "Accuracy",
+                                       descriptiveText: "What percent are you in tune",
+                                       data: audioVM.audio.recording.recordedAmplitude)
+                    }
+                case .notes:
+                    VStack {
+                        AnalyticsChart(title: "Dynamic",
+                                       descriptiveText: "Attack, Sustain, Release, Decay",
+                                       data: audioVM.audio.recording.splittedRecording[noteSelectedToAnalyze])
+                        
+                        Spacer()
+                            .frame(height: 32)
+                        
+                        AnalyticsChart(title: "Accuracy",
+                                       descriptiveText: "How your pitch change within a note",
+                                       data: audioVM.audio.recording.splittedRecording[noteSelectedToAnalyze])
                     }
                 }
             }
-            .frame(maxWidth: .infinity,maxHeight: .infinity, alignment: .top)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             .padding(EdgeInsets(top: 0, leading: 24, bottom: 0, trailing: 24))
             .foregroundColor(.neutral.onBackground)
         }

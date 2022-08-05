@@ -18,7 +18,8 @@ struct AudioRecording {
     var timeCap: Int = -1 // the maximum size for the recorded amplitude, -1 means unlimited
     var isRecording: Bool=false
     
-    var splittedRecordingByAmp = [[Double]]()
+    var splittedRecording = [[Double]]()
+    var splittedNoteIndices: Array<Int> = []
     
     mutating func addAmplitude(lastAmplitude: Double)->Void{ // return a boolean value to var isRecording, stop the recording if recordedAmplitude reached its max size
         if (self.isRecording){

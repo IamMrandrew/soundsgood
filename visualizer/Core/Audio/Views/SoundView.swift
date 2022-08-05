@@ -39,16 +39,18 @@ struct SoundView: View {
                     
                     CaptureTimeButton(
                         action: {
-                            if (vm.audio.recording.isRecording){
+                            if (vm.audio.recording.isRecording) {
                                 // user stop recording
                                 // display the analytics sheet
                                 showRecordingAnalyticsDrawer.toggle()
-                                vm.audio.recording.splittedRecordingByAmp = vm.splitAudioBySilence(data: vm.audio.recording.recordedAmplitude, percentage: 0.1, durationInSec: 10.0)
-                                print("DEBUG: Before \(vm.audio.recording.recordedAmplitude)")
-                                print("DEBUG: After \(vm.audio.recording.splittedRecordingByAmp)")
+                                vm.splitAudioBySilence(data: vm.audio.recording.recordedAmplitude,
+                                                       percentage: 0.1,
+                                                       durationInSec: 10.0)
                             }
+                            print("DEBUG: original \(vm.audio.recording.recordedAmplitude)")
+                            print("DEBUG: splitted \(vm.audio.recording.splittedRecording)")
+                            print("DEBUG: note indices \(vm.audio.recording.splittedNoteIndices)")
                             vm.audio.recording.toggleRecording()
-                            
                         },
                         captureTime: vm.audio.captureTime,
                         isRecording: vm.audio.recording.isRecording)

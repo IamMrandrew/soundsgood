@@ -417,6 +417,7 @@ class AudioViewModel: ObservableObject {
 //            }
 //        }
     // created by John Yeung 20/07/2022
+    // Refactored by Andrew Li
     func splitAudioBySilenceWithAmp(data: Array<Double>, ampThreshold: Double, durationInSec: Double)->[[Double]]{
         let durationInSamp: Int = Int(durationInSec * SAMPLE_RATE)  // length of the audio
         
@@ -426,21 +427,37 @@ class AudioViewModel: ObservableObject {
         let ignoreTimeThreshold: Int = 0                    // min bin length for non-silence data to be added into the return array
         var splittedAudio = [[Double]]()                     // the returned audio, contain slices of input data, cut according to slience data in between
         
-        var dataAfterFirst: Array<Double> = data             // data is immutable, need to make a copy
+        var remainingData: Array<Double> = data             // data is immutable, need to make a copy
+        
+        // Starting position of a note
+        var index: Int = 0
+        
+        // Reset splitted note indices array
+        self.audio.recording.splittedNoteIndices = []
+        
+        // SPLITTING ALGORITHM (Consider silent point with amplitude threshold only)
+        // i is the position of the first silent point of the remaining recording array
+        // The head of RemainingData should be the start of a note after first split
+        // We look for a silent point first, and look for another non-continuous silent point (A note is in between)
+        // We stored each note array into a array, making an array of array for the whole melody with each note as an array element
         
         // reference to https://developer.apple.com/documentation/swift/arrayslice
-        while let i = dataAfterFirst.firstIndex(where: { abs($0) < ampThreshold }) { // while there is silent point in data
+        while let i = remainingData.firstIndex(where: { abs($0) < ampThreshold }) { // while there is a silent point in the remaining data
             splitPtFound = true                                 // mark that a Silent data was found ( do we need this?
             continSilentSamp += 1                               // count of amplitude data less then the threshold
             
-            if (i > ignoreTimeThreshold){    // if 2 silent pts are seperated at least ignoreTimeThreshold indices away
-//                splittedAudio.append(Array(dataAfterFirst[..<i]))   // cut the data between silence point and append to result
+            if (i > ignoreTimeThreshold) {    // if 2 silent pts are seperated at least ignoreTimeThreshold indices away
+                // Append the head till i (first silent point in remaining)
+                splittedAudio.append(Array(remainingData[..<i]))   // That's the note we want!
                 
-                // To display the entire recorded sound, including the silent part
-                splittedAudio.append(Array(dataAfterFirst))
+                // To be able to scroll on Note, we should mark down the indices
+                self.audio.recording.splittedNoteIndices.append(index + 1)
+                index += i // Keep track of the index of recordedAmplitude (1D array)
+            } else {
+                index += 1 // Keep track of the index of srecordedAmplitude (1D array)
             }
             
-            dataAfterFirst = Array(dataAfterFirst[(i + 1)...])  // update dataAfterFirst with the remaining ampitude data
+            remainingData = Array(remainingData[(i + 1)...])  // keep only with the remaining ampitude data
         }
         
         return splittedAudio
@@ -474,11 +491,11 @@ class AudioViewModel: ObservableObject {
 //            }
 //        }
     // created by John Yeung 20/07/2022
-    func splitAudioBySilence(data: Array<Double>, percentage: Double, durationInSec: Double)->[[Double]]{
+    func splitAudioBySilence(data: Array<Double>, percentage: Double, durationInSec: Double) {
         let maxAmp: Double = data.max() ?? 0.0 // data.max returns optional, set 0.0 as default value
         let ampThreshold: Double = maxAmp * percentage
         
-        return splitAudioBySilenceWithAmp(data: data, ampThreshold: ampThreshold, durationInSec: durationInSec)
+        self.audio.recording.splittedRecording = splitAudioBySilenceWithAmp(data: data, ampThreshold: ampThreshold, durationInSec: durationInSec)
     }
     
 //

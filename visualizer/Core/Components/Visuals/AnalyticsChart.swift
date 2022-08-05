@@ -19,9 +19,11 @@ struct AnalyticsChart: View {
             return generateChartData(data: data)
         }
     }
+    
     var body: some View {
         VStack(alignment: .leading) {
             Text(title)
+                .foregroundColor(.neutral.onBackground)
                 .font(.label.medium)
             
             Spacer()
@@ -39,36 +41,47 @@ struct AnalyticsChart: View {
                 .font(.label.xsmall)
         }
     }
+}
+
+private extension AnalyticsChart {
     
-    func generateChartData(data: Array<Double>)->LineChartData{
+    func generateChartData(data: Array<Double>) -> LineChartData {
         var chartDataSet : [LineChartDataPoint] = []
         
-        for dataPoint in data{
+        for dataPoint in data {
             chartDataSet.append(LineChartDataPoint(value: dataPoint))
         }
+        
         let chartData = LineDataSet(dataPoints: chartDataSet,
-                                    pointStyle: PointStyle(pointSize:0.0, lineWidth: 0.0),
+//      Remark: Disable point as we haven't manage to show point only on peak
+//                                    pointStyle: PointStyle(pointSize: 10.0,
+//                                                           borderColour: .accent.highlight,
+//                                                           fillColour: .white,
+//                                                           lineWidth: 3.0,
+//                                                           pointType: .filledOutLine,
+//                                                           pointShape: .circle
+//                                                          ),
+                                    pointStyle: PointStyle(pointSize: 0.0, lineWidth: 0.0),
                                     style: LineStyle(
                                         lineColour: ColourStyle(colour: .accent.highlight),
-                                        lineType: .line))
-           
-        let metadata   : ChartMetadata  = ChartMetadata(title       : "",
-                                                        subtitle    : "")
-        
-
-        let gridStyle   : GridStyle     = GridStyle(lineColour  : .neutral.axis,
-                                                    lineWidth   : 1,
-                                                    dash: [CGFloat]())
-        
-        let chartStyle  : LineChartStyle    = LineChartStyle(infoBoxPlacement: .header,
-                                                     yAxisGridStyle: GridStyle(lineColour: Color.primary.opacity(0.5)))
-        
-        return LineChartData(dataSets   : chartData,
-                         metadata       : metadata,
-                         chartStyle     : chartStyle
+                                        lineType: .line)
         )
-    
-
+        
+        let metadata = ChartMetadata(title: "", subtitle: "")
+        
+        let gridStyle = GridStyle(lineColour: .neutral.axis,
+                                  lineWidth: 3,
+                                  dash: []
+        )
+        
+        let chartStyle = LineChartStyle(infoBoxPlacement: .header,
+                                        xAxisGridStyle: gridStyle
+        )
+        
+        return LineChartData(dataSets: chartData,
+                             metadata: metadata,
+                             chartStyle: chartStyle
+        )
     }
 }
 
