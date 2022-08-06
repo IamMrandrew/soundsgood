@@ -93,14 +93,14 @@ struct RecordingAnalyticsDrawerView: View {
                     VStack {
                         AnalyticsChart(title: "Dynamic",
                                        descriptiveText: "Attack, Sustain, Release, Decay",
-                                       data: audioVM.audio.recording.splittedRecording[noteSelectedToAnalyze])
+                                       data: audioVM.audio.recording.splittedRecording.count > 0 ? audioVM.audio.recording.splittedRecording[noteSelectedToAnalyze] : [])
                         
                         Spacer()
                             .frame(height: 32)
                         
                         AnalyticsChart(title: "Accuracy",
                                        descriptiveText: "How your pitch change within a note",
-                                       data: audioVM.audio.recording.splittedRecording[noteSelectedToAnalyze])
+                                       data:  audioVM.audio.recording.splittedRecording.count > 0 ? audioVM.audio.recording.splittedRecording[noteSelectedToAnalyze] : [])
                     }
                 }
             }
