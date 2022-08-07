@@ -10,6 +10,7 @@
 		2E10EC73287FBA6A0080CA03 /* RecordingAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E10EC72287FBA6A0080CA03 /* RecordingAnalytics.swift */; };
 		2E10EC75287FC6DF0080CA03 /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E10EC74287FC6DF0080CA03 /* CloseButton.swift */; };
 		2E10EC77287FCA1C0080CA03 /* AnalyticsChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E10EC76287FCA1C0080CA03 /* AnalyticsChart.swift */; };
+		2E4463782890E0FE00678595 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 2E4463772890E0FE00678595 /* SwiftUICharts */; };
 		2EBE1011287E9BAD0088A609 /* RecordingAnalyticsDrawerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBE1010287E9BAD0088A609 /* RecordingAnalyticsDrawerView.swift */; };
 		2EBE1013287E9BC40088A609 /* RecordingAnalyticsDrawerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBE1012287E9BC40088A609 /* RecordingAnalyticsDrawerViewModel.swift */; };
 		4903949727EA2B55000B3AC0 /* TimbreTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4903949627EA2B55000B3AC0 /* TimbreTag.swift */; };
@@ -295,6 +296,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E4463782890E0FE00678595 /* SwiftUICharts in Frameworks */,
 				49D6F7EE274926AA00CDCCE4 /* SoundpipeAudioKit in Frameworks */,
 				8E68DC322747EE8800F418E6 /* AudioKit in Frameworks */,
 			);
@@ -862,6 +864,7 @@
 			packageProductDependencies = (
 				8E68DC312747EE8800F418E6 /* AudioKit */,
 				49D6F7ED274926AA00CDCCE4 /* SoundpipeAudioKit */,
+				2E4463772890E0FE00678595 /* SwiftUICharts */,
 			);
 			productName = visualizer;
 			productReference = 8EEFAF8927130F7E00E3651D /* visualizer.app */;
@@ -916,6 +919,7 @@
 			packageReferences = (
 				8E68DC302747EE8800F418E6 /* XCRemoteSwiftPackageReference "AudioKit" */,
 				49D6F7EC274926AA00CDCCE4 /* XCRemoteSwiftPackageReference "SoundpipeAudioKit" */,
+				2E4463762890E0FE00678595 /* XCRemoteSwiftPackageReference "SwiftUICharts" */,
 			);
 			productRefGroup = 8EEFAF8A27130F7E00E3651D /* Products */;
 			projectDirPath = "";
@@ -1672,6 +1676,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2E4463762890E0FE00678595 /* XCRemoteSwiftPackageReference "SwiftUICharts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/willdale/SwiftUICharts.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		49D6F7EC274926AA00CDCCE4 /* XCRemoteSwiftPackageReference "SoundpipeAudioKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AudioKit/SoundpipeAudioKit.git";
@@ -1691,6 +1703,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2E4463772890E0FE00678595 /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2E4463762890E0FE00678595 /* XCRemoteSwiftPackageReference "SwiftUICharts" */;
+			productName = SwiftUICharts;
+		};
 		49D6F7ED274926AA00CDCCE4 /* SoundpipeAudioKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 49D6F7EC274926AA00CDCCE4 /* XCRemoteSwiftPackageReference "SoundpipeAudioKit" */;

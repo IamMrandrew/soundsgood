@@ -1,7 +1,7 @@
 //
 //  SoundView.swift
 //  visualizer
-//
+//	
 //  Created by Mark Cheng on 7/11/2021.
 //
 
@@ -39,13 +39,18 @@ struct SoundView: View {
                     
                     CaptureTimeButton(
                         action: {
-                            if (vm.audio.recording.isRecording){
+                            if (vm.audio.recording.isRecording) {
                                 // user stop recording
                                 // display the analytics sheet
                                 showRecordingAnalyticsDrawer.toggle()
+                                vm.splitAudioBySilence(data: vm.audio.recording.recordedAmplitude,
+                                                       percentage: 0.1,
+                                                       durationInSec: 10.0)
                             }
+                            print("DEBUG: original \(vm.audio.recording.recordedAmplitude)")
+                            print("DEBUG: splitted \(vm.audio.recording.splittedRecording)")
+                            print("DEBUG: note indices \(vm.audio.recording.splittedNoteIndices)")
                             vm.audio.recording.toggleRecording()
-                            
                         },
                         captureTime: vm.audio.captureTime,
                         isRecording: vm.audio.recording.isRecording)
@@ -68,6 +73,7 @@ struct SoundView: View {
                 .sheet(isPresented: $showRecordingAnalyticsDrawer, content: {
                     RecordingAnalyticsDrawerView(isShowing: $showRecordingAnalyticsDrawer)
                         .environmentObject(vm.RecordingAnalyticsVM)
+                        .environmentObject(vm)
                 })
                 
                 

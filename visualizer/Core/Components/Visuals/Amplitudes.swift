@@ -34,6 +34,10 @@ struct Amplitudes: View {
                                     repeats: true)
                                 { (timer) in
                                     value = (vm.audio.lastAmplitude * 30, counter)
+                                    
+                                    // Store the amplitude along with the displayed one
+                                    vm.audio.recording.addAmplitude(lastAmplitude: vm.audio.lastAmplitude)
+                                    
                                     if(counter == 10){
                                         counter = 0
                                     }else{
@@ -50,6 +54,10 @@ struct Amplitudes: View {
                                 buffer.forceToValue(0.0)
                                 self.timer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { (timer) in
                                     value = (vm.audio.lastAmplitude * 30, counter)
+                                    
+                                    // Store the amplitude along with the displayed one
+                                    vm.audio.recording.addAmplitude(lastAmplitude: vm.audio.lastAmplitude)
+                                    
                                     if(counter == 10){
                                         counter = 0
                                     }else{
