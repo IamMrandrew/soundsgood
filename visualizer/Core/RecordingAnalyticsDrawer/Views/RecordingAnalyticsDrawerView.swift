@@ -10,8 +10,7 @@ import SwiftUI
 
 struct RecordingAnalyticsDrawerView: View {
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var recordingAnalyticsDrawerVM: RecordingAnalyticsDrawerViewModel
-    @EnvironmentObject var audioVM: AudioViewModel
+    @EnvironmentObject var vm: AudioViewModel
     @Binding var isShowing: Bool
     
     @State private var analyticsMode: RecordingAnalyticsDrawer.AnalyticsTypes = .melody
@@ -64,9 +63,9 @@ struct RecordingAnalyticsDrawerView: View {
                 .frame(height: 32)
             
             VStack {
-                RecordingAmplitudes(amplitudes: audioVM.audio.recording.recordedAmplitude,
+                RecordingAmplitudes(amplitudes: vm.audio.audioRecording.recording.map { $0.amplitude },
                                     noteSelectedToAnalyze: $noteSelectedToAnalyze,
-                                    splittedNoteIndices: audioVM.audio.recording.splittedNoteIndices)
+                                    splittedNoteIndices: vm.audio.audioRecording.splittedNoteIndices)
             }
             .frame(maxWidth: .infinity, maxHeight: 150)
             .background(Color("surfaceVariant"))
@@ -80,27 +79,27 @@ struct RecordingAnalyticsDrawerView: View {
                     VStack {
                         AnalyticsChart(title: "Dynamic",
                                        descriptiveText: "How consistent your dynamic is",
-                                       data: audioVM.audio.recording.recordedAmplitude)
+                                       data: vm.audio.audioRecording.recording.map { $0.amplitude })
                         
                         Spacer()
                             .frame(height: 32)
                         
                         AnalyticsChart(title: "Accuracy",
                                        descriptiveText: "What percent are you in tune",
-                                       data: audioVM.audio.recording.recordedAmplitude)
+                                       data: vm.audio.audioRecording.recording.map { $0.pitchDetune })
                     }
                 case .notes:
                     VStack {
                         AnalyticsChart(title: "Dynamic",
                                        descriptiveText: "Attack, Sustain, Release, Decay",
-                                       data: audioVM.audio.recording.splittedRecording.count > 0 ? audioVM.audio.recording.splittedRecording[noteSelectedToAnalyze] : [])
+                                       data: vm.audio.audioRecording.splittedRecording.count > 0 ? vm.audio.audioRecording.splittedRecording[noteSelectedToAnalyze].map { $0.amplitude } : [])
                         
                         Spacer()
                             .frame(height: 32)
                         
                         AnalyticsChart(title: "Accuracy",
                                        descriptiveText: "How your pitch change within a note",
-                                       data:  audioVM.audio.recording.splittedRecording.count > 0 ? audioVM.audio.recording.splittedRecording[noteSelectedToAnalyze] : [])
+                                       data:  vm.audio.audioRecording.splittedRecording.count > 0 ? vm.audio.audioRecording.splittedRecording[noteSelectedToAnalyze].map { $0.pitchDetune } : [])
                     }
                 }
             }
@@ -116,7 +115,6 @@ struct RecordingAnalyticsDrawer_Previews: PreviewProvider {
     static var previews: some View {
         RecordingAnalyticsDrawerView(isShowing: .constant(true)
         )
-        .environmentObject(RecordingAnalyticsDrawerViewModel())
         .environmentObject(AudioViewModel())
     }
 }

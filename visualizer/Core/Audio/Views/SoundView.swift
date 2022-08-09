@@ -39,26 +39,25 @@ struct SoundView: View {
                     
                     CaptureTimeButton(
                         action: {
-                            if (vm.audio.recording.isRecording) {
+                            if (vm.isRecording) {
                                 // user stop recording
                                 // display the analytics sheet
                                 showRecordingAnalyticsDrawer.toggle()
-                                vm.splitAudioBySilence(data: vm.audio.recording.recordedAmplitude,
-                                                       percentage: 0.1,
-                                                       durationInSec: 10.0)
+                                vm.splitRecording()
                             }
-                            print("DEBUG: original \(vm.audio.recording.recordedAmplitude)")
-                            print("DEBUG: splitted \(vm.audio.recording.splittedRecording)")
-                            print("DEBUG: note indices \(vm.audio.recording.splittedNoteIndices)")
-                            vm.audio.recording.toggleRecording()
+                            print("DEBUG: original \(vm.audio.audioRecording.recording)")
+                            print("DEBUG: splitted \(vm.audio.audioRecording.splittedRecording)")
+                            print("DEBUG: note indices \(vm.audio.audioRecording.splittedNoteIndices)")
+                            
+                            vm.toggleRecording()
                         },
                         captureTime: vm.audio.captureTime,
-                        isRecording: vm.audio.recording.isRecording)
+                        isRecording: vm.isRecording)
                     
                     Spacer()
                         .frame(height: 60)
                     
-//                    Text(String(vm.audio.recording.recordedAmplitude.count))
+//                    Text(String(vm.audio.recording.recording.count))
 //                    Text(String(vm.audio.recording.isRecording))
 //                    Text(String(vm.audio.recording.timeCap))
                     
@@ -72,7 +71,6 @@ struct SoundView: View {
                 })
                 .sheet(isPresented: $showRecordingAnalyticsDrawer, content: {
                     RecordingAnalyticsDrawerView(isShowing: $showRecordingAnalyticsDrawer)
-                        .environmentObject(vm.RecordingAnalyticsVM)
                         .environmentObject(vm)
                 })
                 

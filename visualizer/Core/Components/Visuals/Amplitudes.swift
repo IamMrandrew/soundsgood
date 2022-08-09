@@ -36,11 +36,12 @@ struct Amplitudes: View {
                                     value = (vm.audio.lastAmplitude * 30, counter)
                                     
                                     // Store the amplitude along with the displayed one
-                                    vm.audio.recording.addAmplitude(lastAmplitude: vm.audio.lastAmplitude)
+                                    // Store the pitch data along with the displayed one
+                                    vm.addRecordingData()
                                     
-                                    if(counter == 10){
+                                    if(counter == 10) {
                                         counter = 0
-                                    }else{
+                                    } else {
                                         counter += 1
                                     }
                                 }
@@ -56,11 +57,12 @@ struct Amplitudes: View {
                                     value = (vm.audio.lastAmplitude * 30, counter)
                                     
                                     // Store the amplitude along with the displayed one
-                                    vm.audio.recording.addAmplitude(lastAmplitude: vm.audio.lastAmplitude)
+                                    // Store the pitch data along with the displayed one
+                                    vm.addRecordingData()
                                     
-                                    if(counter == 10){
+                                    if(counter == 10) {
                                         counter = 0
-                                    }else{
+                                    } else {
                                         counter += 1
                                     }
                                 }
