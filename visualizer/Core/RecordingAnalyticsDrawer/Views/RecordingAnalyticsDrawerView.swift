@@ -17,7 +17,7 @@ struct RecordingAnalyticsDrawerView: View {
     @State private var noteSelectedToAnalyze: Int = 0
     
     var body: some View {
-        VStack {
+        ScrollView(showsIndicators: false) {
             VStack(alignment: .leading) {
                 // Presentation Sheet Header
                 Group {
@@ -86,11 +86,21 @@ struct RecordingAnalyticsDrawerView: View {
                         Spacer()
                             .frame(height: 32)
                         
+                        AnalyticsChart(title: "Pitch",
+                                       descriptiveText: "Shows the pitch you play",
+                                       data: vm.audio.audioRecording.recording.map { $0.pitchFrequency },
+                                       legend: "Frequency"
+                        )
+                        
+                        Spacer()
+                            .frame(height: 32)
+                        
                         AnalyticsChart(title: "Accuracy",
-                                       descriptiveText: "What percent are you in tune",
+                                       descriptiveText: "How far are you from in tune",
                                        data: vm.audio.audioRecording.recording.map { $0.pitchDetune },
                                        legend: "Cent"
                         )
+                        
                     }
                 case .notes:
                     VStack {
@@ -103,10 +113,20 @@ struct RecordingAnalyticsDrawerView: View {
                         Spacer()
                             .frame(height: 32)
                         
-                        AnalyticsChart(title: "Accuracy",
+                        AnalyticsChart(title: "Pitch",
                                        descriptiveText: "How your pitch change within a note",
+                                       data:  vm.audio.audioRecording.splittedRecording.count > 0 ? vm.audio.audioRecording.splittedRecording[noteSelectedToAnalyze].map { $0.pitchFrequency } : [],
+                                       legend: "Frequency"
+                        )
+                        
+                        Spacer()
+                            .frame(height: 32)
+                        
+                        AnalyticsChart(title: "Accuracy",
+                                       descriptiveText: "How your detune change within a note",
                                        data:  vm.audio.audioRecording.splittedRecording.count > 0 ? vm.audio.audioRecording.splittedRecording[noteSelectedToAnalyze].map { $0.pitchDetune } : [],
-                                       legend: "Cent")
+                                       legend: "Cent"
+                        )
                     }
                 }
             }

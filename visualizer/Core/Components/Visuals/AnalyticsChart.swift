@@ -35,6 +35,7 @@ struct AnalyticsChart: View {
                 .touchOverlay(chartData: chartData, specifier: "%.03f")
                 .floatingInfoBox(chartData: chartData)
                 .id(chartData.id)
+                .frame(height: 150)
             
             Spacer()
                 .frame(height: 8)
@@ -58,7 +59,13 @@ private extension AnalyticsChart {
         var chartDataSet : [LineChartDataPoint] = []
         
         for dataPoint in data {
-            chartDataSet.append(LineChartDataPoint(value: dataPoint))
+            if (legend == "Frequency") {
+                // Put Pitch Letter on description (Show inside Info Box
+                let pitchLetter = pitchFromFrequency(Float(dataPoint), Setting.NoteRepresentation.flat)
+                chartDataSet.append(LineChartDataPoint(value: dataPoint, description: pitchLetter))
+            } else {
+                chartDataSet.append(LineChartDataPoint(value: dataPoint))
+            }
         }
         
         let chartData = LineDataSet(dataPoints: chartDataSet,

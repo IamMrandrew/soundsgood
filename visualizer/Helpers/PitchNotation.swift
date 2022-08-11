@@ -92,9 +92,9 @@ func getLabeling(_ interval: Int)->[Int] {
 func getSurroundingLetters(_ pitchNotation: String) -> Array<String> {
     let pitchLetter = String(pitchNotation.dropLast())
     if let i = notationSharp.firstIndex(of: pitchLetter) {
-        return [notationSharp[circular: i+1], pitchLetter, notationSharp[circular: i-1]]
+        return [notationSharp[circular: i+1] + pitchNotation.suffix(1), pitchLetter + pitchNotation.suffix(1), notationSharp[circular: i-1] + pitchNotation.suffix(1)]
     }else if let i = notationFlat.firstIndex(of: pitchLetter){
-        return [notationFlat[circular: i+1], pitchLetter, notationFlat[circular: i-1]]
+        return [notationFlat[circular: i+1] + pitchNotation.suffix(1), pitchLetter + pitchNotation.suffix(1), notationFlat[circular: i-1] + pitchNotation.suffix(1)]
     }else {
         return ["-", "-", "-"]
     }
