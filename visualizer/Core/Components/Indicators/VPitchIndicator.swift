@@ -15,8 +15,8 @@ struct VPitchIndicator: View {
         Rectangle()
             .fill(Color.neutral.surface)
             .opacity(0.95)
-            .frame(maxWidth: 51, maxHeight: 442)
-            .cornerRadius(15)
+            .frame(maxWidth: 60, maxHeight: 442)
+            .cornerRadius(20)
             .overlay(
                 VStack {
                     Text(getSurroundingLetters(pitchLetter)[0])
@@ -56,7 +56,7 @@ struct Dot: View {
 }
 
 struct VPitchIndicator_Previews: PreviewProvider {
-    @State static private var pitchLetter = "C"
+    @State static private var pitchLetter = "C4"
 //    static private var pitchLetters = getSurroundingLetters("-")
     
     static var previews: some View {

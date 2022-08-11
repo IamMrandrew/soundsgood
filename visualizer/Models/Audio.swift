@@ -10,7 +10,7 @@ import Foundation
 struct Audio {
     var amplitudes: [Double] // realtime amplitudes
     var amplitudesToDisplay: [Double] // amplitudes on change by some event(e.g., pitch change)
-    var recording: AudioRecording
+    var audioRecording: AudioRecording
     var peakBarIndex: Int
     var pitchNotation: String
     var pitchFrequency: Float
@@ -27,7 +27,7 @@ struct Audio {
     static let `default` = Audio(
         amplitudes: Array(repeating: 0.5, count: 256),
         amplitudesToDisplay: Array(repeating: 0.5, count: 256),
-        recording: AudioRecording(recordedAmplitude:[], timeCap:-1),
+        audioRecording: AudioRecording(),
         peakBarIndex: -1,
         pitchNotation: "-",
         pitchFrequency: 0.0,

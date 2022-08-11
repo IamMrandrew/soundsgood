@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2E10EC73287FBA6A0080CA03 /* RecordingAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E10EC72287FBA6A0080CA03 /* RecordingAnalytics.swift */; };
-		2E10EC75287FC6DF0080CA03 /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E10EC74287FC6DF0080CA03 /* CloseButton.swift */; };
 		2E10EC77287FCA1C0080CA03 /* AnalyticsChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E10EC76287FCA1C0080CA03 /* AnalyticsChart.swift */; };
 		2E4463782890E0FE00678595 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 2E4463772890E0FE00678595 /* SwiftUICharts */; };
 		2EBE1011287E9BAD0088A609 /* RecordingAnalyticsDrawerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBE1010287E9BAD0088A609 /* RecordingAnalyticsDrawerView.swift */; };
@@ -21,6 +20,7 @@
 		491041D127ADB32100196A2D /* Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491041D027ADB32100196A2D /* Audio.swift */; };
 		492D8BFF27C51B8E006964D7 /* Cello.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492D8BFE27C51B8E006964D7 /* Cello.swift */; };
 		49558BB127C5484500F8CEB9 /* Flute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49558BB027C5484500F8CEB9 /* Flute.swift */; };
+		496483FD28A020240067D646 /* RecordingAmplitudes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496483FC28A020240067D646 /* RecordingAmplitudes.swift */; };
 		498F0BED274F808B00A46486 /* MoreButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498F0BEC274F808B00A46486 /* MoreButton.swift */; };
 		498F0BEF274F8FC600A46486 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498F0BEE274F8FC500A46486 /* SettingView.swift */; };
 		498F0BF1274F909600A46486 /* DismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498F0BF0274F909600A46486 /* DismissButton.swift */; };
@@ -167,7 +167,6 @@
 
 /* Begin PBXFileReference section */
 		2E10EC72287FBA6A0080CA03 /* RecordingAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingAnalytics.swift; sourceTree = "<group>"; };
-		2E10EC74287FC6DF0080CA03 /* CloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButton.swift; sourceTree = "<group>"; };
 		2E10EC76287FCA1C0080CA03 /* AnalyticsChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsChart.swift; sourceTree = "<group>"; };
 		2EBE1010287E9BAD0088A609 /* RecordingAnalyticsDrawerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingAnalyticsDrawerView.swift; sourceTree = "<group>"; };
 		2EBE1012287E9BC40088A609 /* RecordingAnalyticsDrawerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingAnalyticsDrawerViewModel.swift; sourceTree = "<group>"; };
@@ -179,6 +178,7 @@
 		491041D027ADB32100196A2D /* Audio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio.swift; sourceTree = "<group>"; };
 		492D8BFE27C51B8E006964D7 /* Cello.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cello.swift; sourceTree = "<group>"; };
 		49558BB027C5484500F8CEB9 /* Flute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flute.swift; sourceTree = "<group>"; };
+		496483FC28A020240067D646 /* RecordingAmplitudes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordingAmplitudes.swift; sourceTree = "<group>"; };
 		498F0BEC274F808B00A46486 /* MoreButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreButton.swift; sourceTree = "<group>"; };
 		498F0BEE274F8FC500A46486 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		498F0BF0274F909600A46486 /* DismissButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissButton.swift; sourceTree = "<group>"; };
@@ -578,7 +578,6 @@
 				8E2AD444280B149E003976DE /* CaptureTimeButton.swift */,
 				B0624A69286C3C80005849F0 /* DisplayDrawerButton.swift */,
 				B0D97867286D473B003880F2 /* DisplayDrawerItemButton.swift */,
-				2E10EC74287FC6DF0080CA03 /* CloseButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -596,6 +595,7 @@
 		49DECB14273A7B1A00C992CE /* Visuals */ = {
 			isa = PBXGroup;
 			children = (
+				496483FC28A020240067D646 /* RecordingAmplitudes.swift */,
 				8EECA38E27382E800083FD02 /* Frequencies.swift */,
 				8EECA39027382E8E0083FD02 /* VBar.swift */,
 				8EECA39227384BC30083FD02 /* Axis.swift */,
@@ -1056,6 +1056,7 @@
 				49EFBED027E9E99F000925E5 /* ReferenceBar.swift in Sources */,
 				4903949727EA2B55000B3AC0 /* TimbreTag.swift in Sources */,
 				2E10EC77287FCA1C0080CA03 /* AnalyticsChart.swift in Sources */,
+				496483FD28A020240067D646 /* RecordingAmplitudes.swift in Sources */,
 				8EECA38F27382E800083FD02 /* Frequencies.swift in Sources */,
 				49D6F7F1274939D000CDCCE4 /* PitchNotation.swift in Sources */,
 				8EECA39327384BC30083FD02 /* Axis.swift in Sources */,
@@ -1073,7 +1074,6 @@
 				8E69A985280A5B7700BD9376 /* AmplitudeBuffer.swift in Sources */,
 				8E2AD445280B149E003976DE /* CaptureTimeButton.swift in Sources */,
 				8EECA395273852030083FD02 /* ViewExtension.swift in Sources */,
-				2E10EC75287FC6DF0080CA03 /* CloseButton.swift in Sources */,
 				8E8DB88027380AD30010FE7E /* PitchIndicator.swift in Sources */,
 				8EECA397273856200083FD02 /* DrawerButton.swift in Sources */,
 				2EBE1013287E9BC40088A609 /* RecordingAnalyticsDrawerViewModel.swift in Sources */,

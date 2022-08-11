@@ -14,7 +14,7 @@ struct RecordingAmplitudes: View {
     @Binding var noteSelectedToAnalyze: Int
     var splittedNoteIndices: [Int]
     
-    @State private var currentPos: Int = 0  // Estimated index of recordedAmplitude of the current scrolled note
+    @State private var currentPos: Int = 0  // Estimated index of recording of the current scrolled note
     
     var body: some View {
         VStack {
