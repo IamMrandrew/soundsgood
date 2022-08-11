@@ -20,7 +20,7 @@ struct CaptureTimeButton: View {
                 .font(.system(size: 18))
                 .frame(width: 104)
                 .padding(10)
-                .foregroundColor(Color.neutral.onSurface)
+                .foregroundColor(self.isRecording ? Color(.white) : Color.neutral.onSurface)
                 .background(self.isRecording ? Color(.systemRed) : Color.neutral.surface)
                 .cornerRadius(20)
         }
