@@ -459,7 +459,7 @@ class AudioViewModel: ObservableObject {
         
         // SPLITTING ALGORITHM (Consider silent point with amplitude threshold only)
         // i is the position of the first silent point of the remaining recording array
-        // The head of RemainingData should be the start of a note after first split
+        // The head of RemainingData should be the start of a note after first split (The loop when we decided to append the array)
         // We look for a silent point first, and look for another non-continuous silent point (A note is in between)
         // We stored each note array into a array, making an array of array for the whole melody with each note as an array element
         
@@ -480,6 +480,15 @@ class AudioViewModel: ObservableObject {
             }
             
             remainingData = Array(remainingData[(i + 1)...])  // keep only with the remaining ampitude data
+        }
+        
+        // Handle case when the recording stop before the last note end
+        if let lastElement = remainingData.last {
+            if lastElement.amplitude >= ampThreshold {
+                splittedAudio.append(Array(remainingData[..<remainingData.count]))   // That's the note we want!
+                
+                self.audio.audioRecording.splittedNoteIndices.append(index + 1)
+            }
         }
         
         return splittedAudio
