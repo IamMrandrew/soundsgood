@@ -13,12 +13,12 @@ struct AnalyticsChart: View {
     let title: String
     let descriptiveText: String
     let data: [Double]
-    //let chartTitle: String
-    var chartData: LineChartData {
-        get {
-            return generateChartData(data: data)
-        }
-    }
+    let legend: String
+    
+    // Workaround to initalize ChartData for SwiftUICharts
+    @State var chartData: LineChartData = LineChartData(dataSets: LineDataSet(
+        dataPoints: [LineChartDataPoint(value: 0)]
+    ))
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -32,6 +32,9 @@ struct AnalyticsChart: View {
             LineChart(chartData: chartData)
                 .pointMarkers(chartData: chartData)
                 .xAxisGrid(chartData: chartData)
+                .touchOverlay(chartData: chartData, specifier: "%.03f")
+                .floatingInfoBox(chartData: chartData)
+                .id(chartData.id)
             
             Spacer()
                 .frame(height: 8)
@@ -40,12 +43,18 @@ struct AnalyticsChart: View {
                 .foregroundColor(.neutral.onBackgroundVariant)
                 .font(.label.xsmall)
         }
+        .onAppear() {
+            chartData = generateChartData(data: data, legend: legend)
+        }
+        .onChange(of: data) { value in
+            chartData = generateChartData(data: value, legend: legend)
+        }
     }
 }
 
 private extension AnalyticsChart {
     
-    func generateChartData(data: Array<Double>) -> LineChartData {
+    func generateChartData(data: Array<Double>, legend: String) -> LineChartData {
         var chartDataSet : [LineChartDataPoint] = []
         
         for dataPoint in data {
@@ -61,10 +70,12 @@ private extension AnalyticsChart {
 //                                                           pointType: .filledOutLine,
 //                                                           pointShape: .circle
 //                                                          ),
+                                    legendTitle: legend,
                                     pointStyle: PointStyle(pointSize: 0.0, lineWidth: 0.0),
                                     style: LineStyle(
                                         lineColour: ColourStyle(colour: .accent.highlight),
                                         lineType: .line)
+                                    
         )
         
         let metadata = ChartMetadata(title: "", subtitle: "")
@@ -74,7 +85,8 @@ private extension AnalyticsChart {
                                   dash: []
         )
         
-        let chartStyle = LineChartStyle(infoBoxPlacement: .header,
+        let chartStyle = LineChartStyle(infoBoxPlacement: .floating,
+                                         markerType: .full(attachment: .line(dot: .style(DotStyle()))),
                                         xAxisGridStyle: gridStyle
         )
         
@@ -87,7 +99,10 @@ private extension AnalyticsChart {
 
 struct AnalyticsChart_Previews: PreviewProvider {
     static var previews: some View {
-        AnalyticsChart(title: "Dynamic", descriptiveText: "Attack, Sustain, Release, Decay", data: [2, 1, 5, 3, 2])
+        AnalyticsChart(title: "Dynamic",
+                       descriptiveText: "Attack, Sustain, Release, Decay",
+                       data: [2, 1, 5, 3, 2],
+                       legend: "Amplitude")
             .environmentObject(AudioViewModel())
     }
 }

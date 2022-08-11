@@ -79,27 +79,34 @@ struct RecordingAnalyticsDrawerView: View {
                     VStack {
                         AnalyticsChart(title: "Dynamic",
                                        descriptiveText: "How consistent your dynamic is",
-                                       data: vm.audio.audioRecording.recording.map { $0.amplitude })
+                                       data: vm.audio.audioRecording.recording.map { $0.amplitude },
+                                       legend: "Amplitude"
+                        )
                         
                         Spacer()
                             .frame(height: 32)
                         
                         AnalyticsChart(title: "Accuracy",
                                        descriptiveText: "What percent are you in tune",
-                                       data: vm.audio.audioRecording.recording.map { $0.pitchDetune })
+                                       data: vm.audio.audioRecording.recording.map { $0.pitchDetune },
+                                       legend: "Cent"
+                        )
                     }
                 case .notes:
                     VStack {
                         AnalyticsChart(title: "Dynamic",
                                        descriptiveText: "Attack, Sustain, Release, Decay",
-                                       data: vm.audio.audioRecording.splittedRecording.count > 0 ? vm.audio.audioRecording.splittedRecording[noteSelectedToAnalyze].map { $0.amplitude } : [])
+                                       data: vm.audio.audioRecording.splittedRecording.count > 0 ? vm.audio.audioRecording.splittedRecording[noteSelectedToAnalyze].map { $0.amplitude } : [],
+                                       legend: "Amplitude"
+                        )
                         
                         Spacer()
                             .frame(height: 32)
                         
                         AnalyticsChart(title: "Accuracy",
                                        descriptiveText: "How your pitch change within a note",
-                                       data:  vm.audio.audioRecording.splittedRecording.count > 0 ? vm.audio.audioRecording.splittedRecording[noteSelectedToAnalyze].map { $0.pitchDetune } : [])
+                                       data:  vm.audio.audioRecording.splittedRecording.count > 0 ? vm.audio.audioRecording.splittedRecording[noteSelectedToAnalyze].map { $0.pitchDetune } : [],
+                                       legend: "Cent")
                     }
                 }
             }
