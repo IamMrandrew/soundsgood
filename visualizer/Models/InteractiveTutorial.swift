@@ -18,6 +18,7 @@ struct InteractiveTutorial {
     enum Page: String {
         case pitch = "pitch"
         case timbre = "timbre"
+        case sound = "sound"
     }
 }
 

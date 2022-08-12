@@ -74,6 +74,22 @@ class InteractiveTutorialViewModel: ObservableObject {
                                                          height: UIScreen.main.bounds.height / 2 - 120),
                                     size: CGSize(width: UIScreen.main.bounds.width, height: 340),
                                     offset: CGSize(width: 0, height: 176))]
+        case .sound:
+            self.tutorials = [
+                InteractiveTutorial(text: "Just like your built in voice memo, sound screen shows your sound against time",
+                                    textPosition: CGSize(width: (UIScreen.main.bounds.width - 32) / 2,
+                                                         height: UIScreen.main.bounds.height / 2 - 40),
+                                    size: CGSize(width: 0, height: 0),
+                                    offset: CGSize(width: 0, height: 0)),
+                InteractiveTutorial(text:
+                                    """
+                                    Moreover, you can do futher analysis on your sound by capturing it 🎙
+                                    """,
+                                    textPosition: CGSize(width: (UIScreen.main.bounds.width - 32) / 2,
+                                                         height: UIScreen.main.bounds.height / 2 - 40),
+                                    size: CGSize(width: UIScreen.main.bounds.width - 16, height: 60),
+                                    offset: CGSize(width: 0, height: UIScreen.main.bounds.height / 2 - 200)),
+            ]
         }
     }
     

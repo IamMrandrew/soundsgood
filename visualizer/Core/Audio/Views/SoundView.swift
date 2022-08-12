@@ -12,7 +12,7 @@ struct SoundView: View {
     @EnvironmentObject var watchConnectVM: WatchConnectivityViewModel
 
 
-    @AppStorage(InteractiveTutorial.Page.pitch.rawValue) var firstLaunch: Bool?
+    @AppStorage(InteractiveTutorial.Page.sound.rawValue) var firstLaunch: Bool?
 
     @State private var showSheet: Bool = false
     @State private var showTutorial: Bool = false
@@ -113,7 +113,7 @@ struct SoundView: View {
             ZStack {
                 if (showTutorial) {
                     InteractiveTutorialView(showTutorial: $showTutorial,
-                                            page: InteractiveTutorial.Page.pitch)
+                                            page: InteractiveTutorial.Page.sound)
                         .animation(.default)
                 }
             }
