@@ -21,16 +21,26 @@ class AudioViewModel: ObservableObject {
     @Published var audio: Audio = Audio.default
     @Published var referenceHarmonicAmplitudes: [Double]
     
+    // Variables for Audio Recording
+    var isRecording: Bool = false
+    private var timeCap: Int = -1 // the maximum size for the recorded amplitude, -1 means unlimited
+    
     // Subscribed from child ViewModels
     @Published var settings: Setting = Setting.default
     
     @Published var timbreDrawer: TimbreDrawer = TimbreDrawer.default
+    @Published var displayDrawer: DisplayDrawer = DisplayDrawer.default
+    @Published var recordingAnalyticsDrawer: RecordingAnalyticsDrawer = RecordingAnalyticsDrawer.default
     
     // Child ViewModels
     private var cancellables = Set<AnyCancellable>()
     @Published var settingVM = SettingViewModel()
     
     @Published var timbreDrawerVM = TimbreDrawerViewModel()
+    
+    @Published var DisplayDrawerVM = DisplayDrawerViewModel()
+    
+    @Published var RecordingAnalyticsVM = RecordingAnalyticsDrawerViewModel()
     
     @Published var isStarted: Bool = false
     
@@ -204,7 +214,7 @@ class AudioViewModel: ObservableObject {
         }
         // update the last captured amplitude
         self.audio.lastAmplitude = Double(amplitude[0])
-        
+            
         self.updateReferenceTimbre()
         self.updateIsPitchAccurate()
     }
@@ -366,12 +376,112 @@ class AudioViewModel: ObservableObject {
     }
     
     func switchCaptureTime(){
-        let options:Array<Int> = [1, 3, 5, 10]
-        let i = options.firstIndex(of:self.audio.captureTime)!
-        if(i == options.count-1){
-            self.audio.captureTime = options[0]
-        }else{
-            self.audio.captureTime = options[i+1]
+//        let options:Array<Int> = [1, 3, 5, 10]
+//        let i = options.firstIndex(of:self.audio.captureTime)!
+//        if(i == options.count-1){
+//            self.audio.captureTime = options[0]
+//        }else{
+//            self.audio.captureTime = options[i+1]
+//        }
+        
+        self.audio.captureTime = 10 // fix the captured time as 10s
+    }
+
+    //
+    // Audio Recording
+    //
+    
+    func addRecordingData() {
+        if (self.isRecording) {
+            if ((self.timeCap == -1) || (self.audio.audioRecording.recording.count < self.timeCap)) { // Stop the recording if recording reached its max size
+                self.audio.audioRecording.recording.append(RecordingData(amplitude: self.audio.lastAmplitude,
+                                                                         pitchFrequency: Double(self.audio.pitchFrequency),
+                                                                         pitchDetune: Double(self.audio.pitchDetune))
+                )
+            } else {
+                self.endRecording()
+            }
         }
+    }
+    
+    func toggleRecording() {
+        if (self.isRecording){
+            self.endRecording()
+        } else {
+            self.startRecording()
+        }
+    }
+    
+    private func startRecording() {
+        self.isRecording = true
+        
+        // Reset the stored recording
+        self.audio.audioRecording.recording = []
+        
+        // Reset splitted note indices array
+        self.audio.audioRecording.splittedNoteIndices = []
+    }
+    
+    private func endRecording() {
+        self.isRecording = false
+    }
+    
+    // Created by John Yeung 20/07/2022
+    
+    func splitRecording() {
+        let data: [RecordingData] = self.audio.audioRecording.recording
+        let percentage: Double = 0.1
+        let maxAmp: Double = data.map { $0.amplitude } .max() ?? 0.0 // data.max returns optional, set 0.0 as default value
+        let ampThreshold: Double = maxAmp * percentage
+        
+        self.audio.audioRecording.splittedRecording = splitAudioBySilenceWithAmplitude(data: data,
+                                                                                 ampThreshold: ampThreshold)
+    }
+    
+    // Created by John Yeung 20/07/2022
+    // Refactored by Andrew LiC
+    
+    func splitAudioBySilenceWithAmplitude(data: Array<RecordingData>, ampThreshold: Double) -> [[RecordingData]] {
+        let ignoreTimeThreshold: Int = 0                    // min bin length for non-silence data to be added into the return array
+        var splittedAudio = [[RecordingData]]()             // the returned audio, contain slices of input data, cut according to slience data in between
+        
+        var remainingData: Array<RecordingData> = data             // data is immutable, need to make a copy
+        
+        // Starting position of a note
+        var index: Int = 0
+        
+        // SPLITTING ALGORITHM (Consider silent point with amplitude threshold only)
+        // i is the position of the first silent point of the remaining recording array
+        // The head of RemainingData should be the start of a note in the loop when we decided to append the array
+        // We look for a silent point first, and look for another non-continuous silent point (A note is in between)
+        // We stored each note array into a array, making an array of array for the whole melody with each note as an array element
+        
+        // reference to https://developer.apple.com/documentation/swift/arrayslice
+        while let i = remainingData.firstIndex(where: { abs($0.amplitude) < ampThreshold }) { // while there is a silent point in the remaining data
+            if (i > ignoreTimeThreshold) {    // if 2 silent pts are seperated at least ignoreTimeThreshold indices away
+                // Append the head till i (first silent point in remaining)
+                splittedAudio.append(Array(remainingData[..<i]))   // That's the note we want!
+                
+                // To be able to scroll on Note, we should mark down the indices
+                self.audio.audioRecording.splittedNoteIndices.append(index + 1)
+                index += i // Keep track of the index of recording (1D array)
+            } else {
+                index += 1 // Keep track of the index of srecordedAmplitude (1D array)
+            }
+            
+            remainingData = Array(remainingData[(i + 1)...])  // keep only with the remaining ampitude data
+        }
+        
+        // Handle case when the recording stop before the last note end
+        if let lastElement = remainingData.last {
+            if lastElement.amplitude >= ampThreshold {
+                splittedAudio.append(Array(remainingData[..<remainingData.count]))   // That's the note we want!
+                
+                self.audio.audioRecording.splittedNoteIndices.append(index + 1)
+            }
+        }
+        
+        return splittedAudio
+        
     }
 }

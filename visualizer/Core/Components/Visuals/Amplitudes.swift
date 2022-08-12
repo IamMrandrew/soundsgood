@@ -29,11 +29,19 @@ struct Amplitudes: View {
                             if(!vm.isStarted){
                                 self.timer?.invalidate()
                             }else{
-                                self.timer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { (timer) in
+                                self.timer = Timer.scheduledTimer(
+                                    withTimeInterval: 0.05,
+                                    repeats: true)
+                                { (timer) in
                                     value = (vm.audio.lastAmplitude * 30, counter)
-                                    if(counter == 10){
+                                    
+                                    // Store the amplitude along with the displayed one
+                                    // Store the pitch data along with the displayed one
+                                    vm.addRecordingData()
+                                    
+                                    if(counter == 10) {
                                         counter = 0
-                                    }else{
+                                    } else {
                                         counter += 1
                                     }
                                 }
@@ -47,9 +55,14 @@ struct Amplitudes: View {
                                 buffer.forceToValue(0.0)
                                 self.timer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { (timer) in
                                     value = (vm.audio.lastAmplitude * 30, counter)
-                                    if(counter == 10){
+                                    
+                                    // Store the amplitude along with the displayed one
+                                    // Store the pitch data along with the displayed one
+                                    vm.addRecordingData()
+                                    
+                                    if(counter == 10) {
                                         counter = 0
-                                    }else{
+                                    } else {
                                         counter += 1
                                     }
                                 }

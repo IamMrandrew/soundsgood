@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct DrawerView<Content: View>: View {
     @Binding var isShowing: Bool
@@ -91,6 +92,7 @@ struct DrawerView_Previews: PreviewProvider {
     static var previews: some View {
         DrawerView(isShowing: .constant(true), isShowingModal: .constant(true)){
             Text("test")
+            
         }
     }
 }

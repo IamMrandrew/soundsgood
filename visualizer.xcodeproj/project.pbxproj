@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E10EC73287FBA6A0080CA03 /* RecordingAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E10EC72287FBA6A0080CA03 /* RecordingAnalytics.swift */; };
+		2E10EC77287FCA1C0080CA03 /* AnalyticsChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E10EC76287FCA1C0080CA03 /* AnalyticsChart.swift */; };
+		2E4463782890E0FE00678595 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 2E4463772890E0FE00678595 /* SwiftUICharts */; };
+		2EBE1011287E9BAD0088A609 /* RecordingAnalyticsDrawerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBE1010287E9BAD0088A609 /* RecordingAnalyticsDrawerView.swift */; };
+		2EBE1013287E9BC40088A609 /* RecordingAnalyticsDrawerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBE1012287E9BC40088A609 /* RecordingAnalyticsDrawerViewModel.swift */; };
 		4903949727EA2B55000B3AC0 /* TimbreTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4903949627EA2B55000B3AC0 /* TimbreTag.swift */; };
 		4906C6AB27537571001C52BC /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4906C6AA27537570001C52BC /* SettingViewModel.swift */; };
 		4906C6AD2753760D001C52BC /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4906C6AC2753760D001C52BC /* Setting.swift */; };
@@ -15,6 +20,7 @@
 		491041D127ADB32100196A2D /* Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491041D027ADB32100196A2D /* Audio.swift */; };
 		492D8BFF27C51B8E006964D7 /* Cello.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492D8BFE27C51B8E006964D7 /* Cello.swift */; };
 		49558BB127C5484500F8CEB9 /* Flute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49558BB027C5484500F8CEB9 /* Flute.swift */; };
+		496483FD28A020240067D646 /* RecordingAmplitudes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496483FC28A020240067D646 /* RecordingAmplitudes.swift */; };
 		498F0BED274F808B00A46486 /* MoreButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498F0BEC274F808B00A46486 /* MoreButton.swift */; };
 		498F0BEF274F8FC600A46486 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498F0BEE274F8FC500A46486 /* SettingView.swift */; };
 		498F0BF1274F909600A46486 /* DismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498F0BF0274F909600A46486 /* DismissButton.swift */; };
@@ -39,7 +45,7 @@
 		49D640C827B1333E00E776C3 /* visualizer_watchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D640C727B1333E00E776C3 /* visualizer_watchTests.swift */; };
 		49D640D227B1333E00E776C3 /* visualizer_watchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D640D127B1333E00E776C3 /* visualizer_watchUITests.swift */; };
 		49D640D427B1333E00E776C3 /* visualizer_watchUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D640D327B1333E00E776C3 /* visualizer_watchUITestsLaunchTests.swift */; };
-		49D640D727B1333E00E776C3 /* SoundsGood.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 49D640A127B1333900E776C3 /* SoundsGood.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		49D640D727B1333E00E776C3 /* SoundsGood.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 49D640A127B1333900E776C3 /* SoundsGood.app */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		49D640E827B13C4300E776C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EEFAF9027130F8000E3651D /* Assets.xcassets */; };
 		49D640F827B1621200E776C3 /* visualizerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D640F727B1621200E776C3 /* visualizerApp.swift */; };
 		49D6F7EE274926AA00CDCCE4 /* SoundpipeAudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = 49D6F7ED274926AA00CDCCE4 /* SoundpipeAudioKit */; };
@@ -81,6 +87,12 @@
 		8EEFAF8D27130F7E00E3651D /* visualizerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEFAF8C27130F7E00E3651D /* visualizerApp.swift */; };
 		8EEFAF9127130F8000E3651D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EEFAF9027130F8000E3651D /* Assets.xcassets */; };
 		8EEFAF9427130F8000E3651D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EEFAF9327130F8000E3651D /* Preview Assets.xcassets */; };
+		B0624A6A286C3C80005849F0 /* DisplayDrawerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0624A69286C3C80005849F0 /* DisplayDrawerButton.swift */; };
+		B0713B7C28767B4F00C0A370 /* AudioRecording.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0713B7B28767B4E00C0A370 /* AudioRecording.swift */; };
+		B0C5D29F2875264C00CDC7CC /* DisplayDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C5D29E2875264C00CDC7CC /* DisplayDrawer.swift */; };
+		B0D97864286D4249003880F2 /* DisplayDrawerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D97863286D4249003880F2 /* DisplayDrawerViewModel.swift */; };
+		B0D97866286D4290003880F2 /* DisplayDrawerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D97865286D4290003880F2 /* DisplayDrawerView.swift */; };
+		B0D97868286D473B003880F2 /* DisplayDrawerItemButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D97867286D473B003880F2 /* DisplayDrawerItemButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -154,6 +166,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2E10EC72287FBA6A0080CA03 /* RecordingAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingAnalytics.swift; sourceTree = "<group>"; };
+		2E10EC76287FCA1C0080CA03 /* AnalyticsChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsChart.swift; sourceTree = "<group>"; };
+		2EBE1010287E9BAD0088A609 /* RecordingAnalyticsDrawerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingAnalyticsDrawerView.swift; sourceTree = "<group>"; };
+		2EBE1012287E9BC40088A609 /* RecordingAnalyticsDrawerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingAnalyticsDrawerViewModel.swift; sourceTree = "<group>"; };
 		4903949627EA2B55000B3AC0 /* TimbreTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimbreTag.swift; sourceTree = "<group>"; };
 		4906C6AA27537570001C52BC /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		4906C6AC2753760D001C52BC /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Setting.swift; path = visualizer/Models/Setting.swift; sourceTree = SOURCE_ROOT; };
@@ -162,6 +178,7 @@
 		491041D027ADB32100196A2D /* Audio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio.swift; sourceTree = "<group>"; };
 		492D8BFE27C51B8E006964D7 /* Cello.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cello.swift; sourceTree = "<group>"; };
 		49558BB027C5484500F8CEB9 /* Flute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flute.swift; sourceTree = "<group>"; };
+		496483FC28A020240067D646 /* RecordingAmplitudes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordingAmplitudes.swift; sourceTree = "<group>"; };
 		498F0BEC274F808B00A46486 /* MoreButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreButton.swift; sourceTree = "<group>"; };
 		498F0BEE274F8FC500A46486 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		498F0BF0274F909600A46486 /* DismissButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissButton.swift; sourceTree = "<group>"; };
@@ -231,6 +248,12 @@
 		8EEFAF9027130F8000E3651D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8EEFAF9327130F8000E3651D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8EEFAFA12713146200E3651D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		B0624A69286C3C80005849F0 /* DisplayDrawerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayDrawerButton.swift; sourceTree = "<group>"; };
+		B0713B7B28767B4E00C0A370 /* AudioRecording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecording.swift; sourceTree = "<group>"; };
+		B0C5D29E2875264C00CDC7CC /* DisplayDrawer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayDrawer.swift; sourceTree = "<group>"; };
+		B0D97863286D4249003880F2 /* DisplayDrawerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayDrawerViewModel.swift; sourceTree = "<group>"; };
+		B0D97865286D4290003880F2 /* DisplayDrawerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayDrawerView.swift; sourceTree = "<group>"; };
+		B0D97867286D473B003880F2 /* DisplayDrawerItemButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayDrawerItemButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -273,6 +296,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E4463782890E0FE00678595 /* SwiftUICharts in Frameworks */,
 				49D6F7EE274926AA00CDCCE4 /* SoundpipeAudioKit in Frameworks */,
 				8E68DC322747EE8800F418E6 /* AudioKit in Frameworks */,
 			);
@@ -281,9 +305,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2EBE100D287E9B530088A609 /* RecordingAnalyticsDrawer */ = {
+			isa = PBXGroup;
+			children = (
+				2EBE100F287E9B840088A609 /* ViewModels */,
+				2EBE100E287E9B7D0088A609 /* Views */,
+			);
+			path = RecordingAnalyticsDrawer;
+			sourceTree = "<group>";
+		};
+		2EBE100E287E9B7D0088A609 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2EBE1010287E9BAD0088A609 /* RecordingAnalyticsDrawerView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2EBE100F287E9B840088A609 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				2EBE1012287E9BC40088A609 /* RecordingAnalyticsDrawerViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		4910418027AC34D800196A2D /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				2EBE100D287E9B530088A609 /* RecordingAnalyticsDrawer */,
+				B0624A6B286C3F9E005849F0 /* DisplayDrawer */,
 				499451F427F4716C00CB9BD0 /* AudioFeaturesDrawer */,
 				8E09211E27BA97D900F540B6 /* TimbreDrawer */,
 				49B8804C27AEDDFD004F985C /* Audio */,
@@ -371,6 +422,9 @@
 				49F9A501279BDF6600AC4A4A /* InteractiveTutorial.swift */,
 				491041D027ADB32100196A2D /* Audio.swift */,
 				8E09213727BB803A00F540B6 /* TimbreDrawer.swift */,
+				B0C5D29E2875264C00CDC7CC /* DisplayDrawer.swift */,
+				B0713B7B28767B4E00C0A370 /* AudioRecording.swift */,
+				2E10EC72287FBA6A0080CA03 /* RecordingAnalytics.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -522,6 +576,8 @@
 				498F0BF2274FC11700A46486 /* SettingButton.swift */,
 				8E09212427BA994900F540B6 /* InstrumentButton.swift */,
 				8E2AD444280B149E003976DE /* CaptureTimeButton.swift */,
+				B0624A69286C3C80005849F0 /* DisplayDrawerButton.swift */,
+				B0D97867286D473B003880F2 /* DisplayDrawerItemButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -539,12 +595,14 @@
 		49DECB14273A7B1A00C992CE /* Visuals */ = {
 			isa = PBXGroup;
 			children = (
+				496483FC28A020240067D646 /* RecordingAmplitudes.swift */,
 				8EECA38E27382E800083FD02 /* Frequencies.swift */,
 				8EECA39027382E8E0083FD02 /* VBar.swift */,
 				8EECA39227384BC30083FD02 /* Axis.swift */,
 				8E63BE2427B29DB6007735DF /* Harmonics.swift */,
 				49EFBECF27E9E99E000925E5 /* ReferenceBar.swift */,
 				8E69A986280AC87000BD9376 /* Amplitudes.swift */,
+				2E10EC76287FCA1C0080CA03 /* AnalyticsChart.swift */,
 			);
 			path = Visuals;
 			sourceTree = "<group>";
@@ -650,6 +708,31 @@
 				8EEFAF9327130F8000E3651D /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B0624A6B286C3F9E005849F0 /* DisplayDrawer */ = {
+			isa = PBXGroup;
+			children = (
+				B0624A6D286C3FBF005849F0 /* ViewModels */,
+				B0624A6C286C3FB5005849F0 /* Views */,
+			);
+			path = DisplayDrawer;
+			sourceTree = "<group>";
+		};
+		B0624A6C286C3FB5005849F0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B0D97865286D4290003880F2 /* DisplayDrawerView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B0624A6D286C3FBF005849F0 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				B0D97863286D4249003880F2 /* DisplayDrawerViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -781,6 +864,7 @@
 			packageProductDependencies = (
 				8E68DC312747EE8800F418E6 /* AudioKit */,
 				49D6F7ED274926AA00CDCCE4 /* SoundpipeAudioKit */,
+				2E4463772890E0FE00678595 /* SwiftUICharts */,
 			);
 			productName = visualizer;
 			productReference = 8EEFAF8927130F7E00E3651D /* visualizer.app */;
@@ -835,6 +919,7 @@
 			packageReferences = (
 				8E68DC302747EE8800F418E6 /* XCRemoteSwiftPackageReference "AudioKit" */,
 				49D6F7EC274926AA00CDCCE4 /* XCRemoteSwiftPackageReference "SoundpipeAudioKit" */,
+				2E4463762890E0FE00678595 /* XCRemoteSwiftPackageReference "SwiftUICharts" */,
 			);
 			productRefGroup = 8EEFAF8A27130F7E00E3651D /* Products */;
 			projectDirPath = "";
@@ -966,8 +1051,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E09212527BA994900F540B6 /* InstrumentButton.swift in Sources */,
+				B0C5D29F2875264C00CDC7CC /* DisplayDrawer.swift in Sources */,
+				B0D97866286D4290003880F2 /* DisplayDrawerView.swift in Sources */,
 				49EFBED027E9E99F000925E5 /* ReferenceBar.swift in Sources */,
 				4903949727EA2B55000B3AC0 /* TimbreTag.swift in Sources */,
+				2E10EC77287FCA1C0080CA03 /* AnalyticsChart.swift in Sources */,
+				496483FD28A020240067D646 /* RecordingAmplitudes.swift in Sources */,
 				8EECA38F27382E800083FD02 /* Frequencies.swift in Sources */,
 				49D6F7F1274939D000CDCCE4 /* PitchNotation.swift in Sources */,
 				8EECA39327384BC30083FD02 /* Axis.swift in Sources */,
@@ -979,6 +1068,7 @@
 				8E09213827BB803A00F540B6 /* TimbreDrawer.swift in Sources */,
 				8E8DB884273811120010FE7E /* TouchEventModifier.swift in Sources */,
 				8EECA39127382E8E0083FD02 /* VBar.swift in Sources */,
+				B0624A6A286C3C80005849F0 /* DisplayDrawerButton.swift in Sources */,
 				499451FA27F471D200CB9BD0 /* AudioFeaturesDrawerViewModel.swift in Sources */,
 				8E09213627BB7F4900F540B6 /* TimbreDrawerViewModel.swift in Sources */,
 				8E69A985280A5B7700BD9376 /* AmplitudeBuffer.swift in Sources */,
@@ -986,20 +1076,26 @@
 				8EECA395273852030083FD02 /* ViewExtension.swift in Sources */,
 				8E8DB88027380AD30010FE7E /* PitchIndicator.swift in Sources */,
 				8EECA397273856200083FD02 /* DrawerButton.swift in Sources */,
+				2EBE1013287E9BC40088A609 /* RecordingAnalyticsDrawerViewModel.swift in Sources */,
 				492D8BFF27C51B8E006964D7 /* Cello.swift in Sources */,
 				4910419327AC37FA00196A2D /* InteractiveTutorialViewModel.swift in Sources */,
 				498F0BED274F808B00A46486 /* MoreButton.swift in Sources */,
+				2EBE1011287E9BAD0088A609 /* RecordingAnalyticsDrawerView.swift in Sources */,
+				2E10EC73287FBA6A0080CA03 /* RecordingAnalytics.swift in Sources */,
 				498F0BF1274F909600A46486 /* DismissButton.swift in Sources */,
 				49DECB11273A730D00C992CE /* Typography.swift in Sources */,
+				B0713B7C28767B4F00C0A370 /* AudioRecording.swift in Sources */,
 				499451F827F471B000CB9BD0 /* AudioFeaturesDrawerView.swift in Sources */,
 				8E63BE2527B29DB6007735DF /* Harmonics.swift in Sources */,
 				8EEFAF8D27130F7E00E3651D /* visualizerApp.swift in Sources */,
 				8EC438BE279ED706009B24E1 /* LiveDropdown.swift in Sources */,
+				B0D97864286D4249003880F2 /* DisplayDrawerViewModel.swift in Sources */,
 				491041D127ADB32100196A2D /* Audio.swift in Sources */,
 				8EC8CD6927253D3700B6E8E7 /* ContentView.swift in Sources */,
 				8E5F446E27BBDF8100DF21D8 /* DrawerView.swift in Sources */,
 				8E09212327BA981900F540B6 /* TimbreDrawerView.swift in Sources */,
 				8E68DC2F2747EE2600F418E6 /* AudioViewModel.swift in Sources */,
+				B0D97868286D473B003880F2 /* DisplayDrawerItemButton.swift in Sources */,
 				499098BC27CD499D00C2A832 /* Violin.swift in Sources */,
 				490E8B632739176B0047DE64 /* Color.swift in Sources */,
 				8E8DB87C273805830010FE7E /* SoundView.swift in Sources */,
@@ -1046,6 +1142,7 @@
 		};
 		49D640D627B1333E00E776C3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = 49D640A027B1333900E776C3 /* visualizer-watch */;
 			targetProxy = 49D640D527B1333E00E776C3 /* PBXContainerItemProxy */;
 		};
@@ -1133,13 +1230,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = QQS593TJVN;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = visualizer_watch_WatchKit_Extension;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.cjc2101.visualizer;
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cjc2101.visualizer.watchkitapp;
 				PRODUCT_NAME = SoundsGood;
 				SDKROOT = watchos;
@@ -1158,13 +1255,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = QQS593TJVN;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = visualizer_watch_WatchKit_Extension;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.cjc2101.visualizer;
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cjc2101.visualizer.watchkitapp;
 				PRODUCT_NAME = SoundsGood;
 				SDKROOT = watchos;
@@ -1181,7 +1278,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_ASSET_PATHS = "\"visualizer-watch WatchKit Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = QQS593TJVN;
 				ENABLE_PREVIEWS = YES;
@@ -1196,7 +1293,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cjc2101.visualizer.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
@@ -1213,7 +1310,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_ASSET_PATHS = "\"visualizer-watch WatchKit Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = QQS593TJVN;
 				ENABLE_PREVIEWS = YES;
@@ -1228,7 +1325,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cjc2101.visualizer.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
@@ -1441,8 +1538,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_ASSET_PATHS = "\"visualizer/Preview Content\"";
 				DEVELOPMENT_TEAM = QQS593TJVN;
 				ENABLE_PREVIEWS = YES;
@@ -1460,9 +1558,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cjc2101.visualizer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1474,8 +1573,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_ASSET_PATHS = "\"visualizer/Preview Content\"";
 				DEVELOPMENT_TEAM = QQS593TJVN;
 				ENABLE_PREVIEWS = YES;
@@ -1493,9 +1593,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cjc2101.visualizer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1580,6 +1681,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2E4463762890E0FE00678595 /* XCRemoteSwiftPackageReference "SwiftUICharts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/willdale/SwiftUICharts.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		49D6F7EC274926AA00CDCCE4 /* XCRemoteSwiftPackageReference "SoundpipeAudioKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AudioKit/SoundpipeAudioKit.git";
@@ -1599,6 +1708,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2E4463772890E0FE00678595 /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2E4463762890E0FE00678595 /* XCRemoteSwiftPackageReference "SwiftUICharts" */;
+			productName = SwiftUICharts;
+		};
 		49D6F7ED274926AA00CDCCE4 /* SoundpipeAudioKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 49D6F7EC274926AA00CDCCE4 /* XCRemoteSwiftPackageReference "SoundpipeAudioKit" */;
