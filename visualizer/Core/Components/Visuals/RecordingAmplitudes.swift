@@ -16,6 +16,8 @@ struct RecordingAmplitudes: View {
     
     @State private var currentPos: Int = 0  // Estimated index of recording of the current scrolled note
     
+    let frameHeight: Double = 140
+    
     var body: some View {
         VStack {
             ScrollViewReader { proxy in
@@ -27,6 +29,9 @@ struct RecordingAmplitudes: View {
                             }
                         }
                     }
+                    .scaleEffect(x: 1,
+                                 y: (frameHeight - 20) / (250 * (amplitudes.max() ?? 140))
+                    )
                     .background(GeometryReader {
                         Color.clear.preference(key: ViewOffsetKey.self,
                                                value: -$0.frame(in: .named("scroll")).origin.x)
@@ -49,7 +54,7 @@ struct RecordingAmplitudes: View {
                 }
             }
         }
-        .frame(height: 140)
+        .frame(height: frameHeight)
     }
 }
 
